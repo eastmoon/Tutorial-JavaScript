@@ -1,0 +1,18 @@
+1. variable
+2. statement 
+	- http://en.wikipedia.org/wiki/Statement_%28computer_science%29
+3. function 
+4. class
+5. position
+6. timeline
+7. animate
+
+=========================
+
+Tutorial list
+
+01¡G
+	- Basic program architecture.
+	- Single application entry
+		- include extend JavaScript file.
+		- start the main JavaScript file, when include finish.
