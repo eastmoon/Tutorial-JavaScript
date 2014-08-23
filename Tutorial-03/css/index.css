@@ -1,0 +1,33 @@
+html, body {height: 100%;}
+html, body {margin: auto;}
+body {
+	background-color: #ffffff;
+}
+
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;}
+a:hover {text-decoration: underline;}
+a:active {text-decoration: underline;}
+
+.fixedBox
+{
+    /*尺寸*/
+    width: 100%;
+    background-color: #ffffff;
+    /*位置*/
+    position: fixed;
+    bottom: 0px;
+}
+.imgIcon
+{
+    /*尺寸*/
+    width: 100px;
+    height: 100px;
+    /*位置*/
+    margin-left: auto;
+    margin-right: auto;
+    /*線框*/
+    border-style: solid;
+    border-width: 1px;
+}
+
