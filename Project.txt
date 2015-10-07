@@ -28,5 +28,8 @@ Tutorial list
 	- JQuery event handler.
 	- RWD ( Responsive Web Design ).
 
+04¡G
+	- One Page Scroll
+	- ref : http://www.smashingmagazine.com/2014/08/25/how-i-built-the-one-page-scroll-plugin/
 
 	

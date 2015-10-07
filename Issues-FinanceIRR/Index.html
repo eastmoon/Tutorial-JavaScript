@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function ModifyFinanceIRR(cfs, guess, floatPrecision) {
+        var currentNPV;
+        var npv;
+        var firstStep = true;
+        //  Initial parameters
+        rate = 0.01;
+        if( guess == null )
+            guess = 0.01;
+        if( floatPrecision == null )
+            floatPrecision = 100;
+        do
+        {
+            // first step don't guess
+            if( !firstStep  )
+            {
+                var burstguess = Math.ceil(Math.log(currentNPV));
+                if(Math.log(currentNPV) > 1)
+                    rate += guess * burstguess;
+                else
+                    rate += guess;
+            }
+            else
+                firstStep = false;
+
+            // base case
+            npv = cfs[0];
+            for (var i = 1; i < cfs.length; i++) {
+                npv +=(cfs[i] / Math.pow((1 + rate / 100 ), i));
+            }
+            currentNPV = Math.round(npv * floatPrecision) / floatPrecision;
+        }while(currentNPV > 0)
+
+        // Return best guess
+        return Math.round(rate * floatPrecision) / floatPrecision;
+    };
+
+    var databank = [-297000];
+    var total = 0;
+    for( var i = 0; i < 60 ; i++)
+    {
+        if( i < 30)
+            databank[databank.length] = 5258;
+        else
+            databank[databank.length] = 5326;
+
+        total += databank[databank.length-1];
+    }
+    total += databank[databank.length-1];
+
+    document.write("Databank size : " + databank.length + ", " + total +"<br />");
+    document.write("ModifyFinanceIRR :" + ModifyFinanceIRR(databank) + "<br />");
+    document.write("Year IRR :" + ModifyFinanceIRR(databank) * 12 + "<br />");
+    document.write("Setting argument <br />");
+    document.write("ModifyFinanceIRR :" + ModifyFinanceIRR(databank, 0.00001, 10000) + "<br />");
+    document.write("Year IRR :" + ModifyFinanceIRR(databank, 0.00001, 10000) * 12 + "<br />");
+</script>
+</body>
+</html>
