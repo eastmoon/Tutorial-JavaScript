@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!-- html ng-app, setting this html page using angularJS. application base module name "todoApp". -->
+<!--
+ Reference : ngApp, https://docs.angularjs.org/api/ng/directive/ngApp
+ if the ngApp directive were not placed on the html element then the document would not be compiled, the AppController would not be instantiated.
+ -->
+<html ng-app="todoApp">
+<head>
+    <title>AngularJS-2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="application/todo.js"></script>
+    <link rel="stylesheet" href="css/todo.css">
+</head>
+<body>
+<h2>Todo</h2>
+<!-- defined DIV is a controller "TodoListController", and rename to "todoList".  -->
+<div ng-controller="TodoListController as todoList">
+    <!-- When Controller has update information, than execute todoList method, and take value in class, use Angular Expressions  -->
+    <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
+    <!-- Setting a link, when click link, than execute todoList method.  -->
+    [ <a href="" ng-click="todoList.archive()">archive</a> ]
+    <ul class="unstyled">
+        <!-- Foreach todoList.todos array object.  -->
+        <li ng-repeat="todo in todoList.todos">
+            <!-- Do something, when take out one object in array.  -->
+            <input type="checkbox" ng-model="todo.done">
+            <span class="done-{{todo.done}}">{{todo.text}}</span>
+        </li>
+    </ul>
+    <!-- Setting a form, when click submit button, than execute todoList method.  -->
+    <form ng-submit="todoList.addTodo()">
+        <input type="text" ng-model="todoList.todoText"  size="30"
+               placeholder="add new todo here">
+        <input class="btn-primary" type="submit" value="add">
+    </form>
+</div>
+</body>
+</html>

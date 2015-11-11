@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="ng-injector">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AngularJS-1_Injector Demo</title>
+    <!-- Load AugularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script>
+        // Reference : https://docs.angularjs.org/guide/di
+        // 1. Setting function parameter source.
+        // 2. Parameter source could be system object ( $scope, $rootScope, $window ), custom function in AngularJS.
+        var module = angular.module('ng-injector', [])
+                .factory("intro1", function() {
+                    return {
+                        context: "It is intro context 1."
+                    };
+                })
+                .factory("intro2", function() {
+                    return {
+                        context: "It is intro context 2."
+                    };
+                })
+                .factory("greeter", function($window) {
+                    return {
+                        greet: function(text) {
+                            $window.alert(text);
+                        }
+                    };
+                })
+                .controller("Controller1", ["$scope", "greeter", function(a_scope, a_obj1) {
+                    a_scope.title = "Injector Test1";
+                    a_scope.call = function() {
+                        a_obj1.greet("Hi ! It is injector test !");
+                    };
+                }]);
+
+        function IntroController(a_scope, a_intro) {
+            a_scope.title = "Injector Test2";
+            a_scope.context = a_intro.context;
+        };
+
+        module.controller("Controller2", ["$scope", "intro1", IntroController]);
+    </script>
+</head>
+<body>
+    <div ng-controller="Controller1">
+        <h1>{{title}}</h1>
+        <button ng-click="call()">Call</button>
+    </div>
+    <div ng-controller="Controller2">
+        <h1>{{title}}</h1>
+        <p>{{context}}</p>
+    </div>
+</body>
+</html>

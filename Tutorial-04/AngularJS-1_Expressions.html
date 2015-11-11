@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html ng-app="ng-expressions">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AngularJS-1_Expressions Demo</title>
+    <!-- Load AugularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script>
+        // Reference : https://docs.angularjs.org/guide/expression
+        angular.module('ng-expressions', [])
+                .controller("Controller1", ["$scope", function(a_scope) {
+                    a_scope.result = 1+2;
+                }])
+                .controller("Controller2", ["$scope", function(a_scope) {
+                    a_scope.exprs = [];
+                    a_scope.expr = '3*10|currency';
+                    a_scope.AddExpr = function(a_expr) {
+                        a_scope.exprs.push(a_expr);
+                    };
+                    a_scope.RemoveExpr = function(a_index) {
+                        a_scope.exprs.splice(a_index, 1);
+                    };
+                }])
+                .controller("Controller3", ["$scope", "$window", function(a_scope, a_window) {
+                    a_scope.name = "World";
+                    a_scope.SayHello = function() {
+                        a_window.alert("Hello " + a_scope.name);
+                    };
+                }])
+                .controller("Controller4", ["$scope", function(a_scope) {
+                    a_scope.name = "Jacky";
+                }]);
+    </script>
+</head>
+<body>
+    <h1>Expression 1</h1>
+    <span>1+2={{1+2}}</span>
+
+    <h1>Expression 2</h1>
+    <div ng-controller="Controller1">1+2={{result}}</div>
+
+    <h1>Expression 3</h1>
+    <div ng-controller="Controller2">
+        Expression：
+        <input type="text" size="100" ng-model="expr" />
+        <button ng-click="AddExpr(expr)">Add Expression</button>
+        <ul>
+            <li ng-repeat="expr in exprs track by $index">
+                [<a href="" ng-click="RemoveExpr($index)">X</a>]
+                <code>{{expr}}</code> =>
+                <span ng-bind="$parent.$eval(expr)"></span>
+            </li>
+        </ul>
+    </div>
+
+    <h1>Expression 4</h1>
+    <div ng-controller="Controller3">
+        Name：
+        <input type="text" size="50" ng-model="name" />
+        <button ng-click="SayHello()">Greet</button>
+        <button ng-click="window.alert('Should not see me')">Won't greet</button>
+        <button onclick="window.alert('Hello, it is JS alert.')">HTML greet</button>
+    </div>
+
+    <h1>Expression 5</h1>
+    <div ng-controller="Controller4">
+        <!-- One-time binding -->
+        Original name：{{::name}}<br />
+        <!-- Normal binding -->
+        Rename to：{{name}}<br />
+        <input type="text" size="50" ng-model="name" />
+    </div>
+</body>
+</html>

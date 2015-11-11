@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html ng-app="ng-directives">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AngularJS-1_Directives Demo</title>
+    <!-- Load AugularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <style>
+        .strike {
+            text-decoration: line-through;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+            background-color: yellow;
+        }
+        .orange {
+            color: orange;
+        }
+
+
+        .list-odd{
+            background-color: #c0c0c0;
+        }
+        .list-even{
+            background-color: #f5deb3;
+        }
+        .list-first{
+            font-weight: bold;
+            color:#232323;
+        }
+        .list-middle{
+            font-weight: normal;
+            color: #556b2f;
+        }
+        .list-last{
+            font-weight: lighter;
+            color:#dc143c;
+        }
+    </style>
+    <script>
+        // Reference : http://www.learn-angular.org/#!/lessons/two-way-bindings
+        // Reference : https://docs.angularjs.org/guide/directive#isolating-the-scope-of-a-directive
+        // Reference : Directives document, https://docs.angularjs.org/api/ng#directive
+        angular.module('ng-directives', [])
+                .controller("Controller1", ["$scope", function(a_scope) {
+                    a_scope.favoriteWord = "Hello World";
+                    a_scope.favoriteColor = "Red";
+                    a_scope.favoriteShape = "'borderStyle' : 'Dotted'";
+                    a_scope.colorList = ["Red", "Green", "Yellow", "Blue"];
+                    a_scope.shapeList = ["Dotted", "Double", "Outset"];
+                    a_scope.getStyle = function() {
+                        return {
+                            color : a_scope.favoriteColor,
+                            borderStyle : a_scope.favoriteShape};
+                    };
+                }])
+                .controller("Controller2", ["$scope", function(a_scope) {
+                    a_scope.styles = [{name:"strike", checked:false},
+                        {name:"bold", checked:false},
+                        {name:"error", checked:false},
+                        {name:"orange", checked:false}];
+                    a_scope.selected = "";
+                    a_scope.apply = false;
+                    a_scope.getStyle = function() {
+                        var style = [];
+                        for( var i = 0 ; i < a_scope.styles.length ; i++ )
+                        {
+                            if( a_scope.styles[i].checked )
+                                style.push(a_scope.styles[i].name);
+                        }
+                        return style;
+                    };
+                }])
+                .controller("Controller3", ["$scope", function(a_scope) {
+                    a_scope.isShowTitle = true;
+                    a_scope.isShowContent = true;
+                    a_scope.isShowFooter = true;
+                }]);
+    </script>
+</head>
+<body>
+    <h1>Directive 1</h1>
+    <div ng-controller="Controller1">
+        <div>
+            <p>Favorite word: <input type="text" ng-model="favoriteWord" /></p>
+        </div>
+        <div>
+            <!-- ng-repeat create a child scope, so you have to bind to the $parent:. -->
+            <!-- Demo : http://jsfiddle.net/g/r9MLe/2/ -->
+            <p>Favorite color:
+            <label ng-repeat="color in colorList">
+                <input type="radio" name="fc" ng-model="$parent.favoriteColor" ng-value=" color">{{color}}</input>
+            </label>
+            </p>
+        </div>
+        <div>
+            <!-- Demo : http://jsfiddle.net/dCFd2/ -->
+            <!-- Demo : http://jsfiddle.net/FxM3B/4/ -->
+            <p>Favorite shape:
+            <select ng-model="favoriteShape">
+                <option ng-repeat="shape in shapeList" ng-value="shape">{{shape}}</option>
+            </select>
+            </p>
+        </div>
+        <!-- Use ngStyle to defined HTML element CSS Style, ngClass to defined HTML element CSS Class.-->
+        <!-- ng-style need is object, not string.-->
+        <!-- Reference : http://abgne.tw/angularjs/angularjs-getting-stared/ngstyle.html-->
+        <!-- Reference : https://docs.angularjs.org/api/ng/directive/ngStyle-->
+        <p>[<span ng-style="getStyle()">{{favoriteWord}}</span>]</p>
+    </div>
+    <h1>Directive 2</h1>
+    <div ng-controller="Controller2">
+        <!-- ngClass give style name which defined in css file. -->
+        <p>Choose one style :
+            <label ng-repeat="style in styles">
+                <input type="radio" name="cs" ng-model="$parent.selected" ng-value="style.name">{{style.name}}</input>
+            </label>
+        </p>
+        <p>[<span ng-class="selected">What style you choose ?</span>]</p>
+        <!-- if need multi style to combine, given an array contains style name.-->
+        <p>Choose multi style :
+            <label ng-repeat="style in styles">
+                <input type="checkbox" ng-model="style.checked">{{style.name}}</input>
+            </label>
+        </p>
+        <p>[<span ng-class="getStyle()">What style you choose ?</span>]</p>
+        <p>Style open / close :
+            <input type="checkbox" ng-model="apply">Apply orange style</input>
+        </p>
+        <p>[<span ng-class="['bold', {'orange' : apply}]">Style apple or not</span>]</p>
+        <p>List style state :</p>
+
+        <ul ng-repeat="style in styles">
+            <li><span ng-class="{'list-odd' : $odd, 'list-even' : $even, 'list-first' : $first, 'list-middle' : $middle, 'list-last' : $last}">{{$index}}. Style : {{style.name}}, State : {{style.checked}} </span></li>
+        </ul>
+
+        <table border="1">
+            <tr>
+                <th width = 20>ID</th>
+                <th width = 100>Name</th>
+                <th width = 50>State</th>
+            </tr>
+
+            <tr ng-repeat="style in styles" ng-class="{'list-odd' : $odd, 'list-even' : $even, 'list-first' : $first, 'list-middle' : $middle, 'list-last' : $last}">
+                <td>{{$index}}</td>
+                <td>{{style.name}}</td>
+                <td>{{style.checked}}</td>
+            </tr>
+        </table>
+    </div>
+    <h1>Directive 3</h1>
+    <div ng-controller="Controller3">
+        <p>
+        <input type="checkbox" ng-model="isShowTitle">Title</input>
+        <input type="checkbox" ng-model="isShowContent">Content</input>
+        <input type="checkbox" ng-model="isShowFooter">Footer</input>
+        </p>
+        <p ng-show="isShowTitle">Title : Directive controller display.</p>
+        <p ng-if="isShowContent">
+            If you simply want to show or hide an element, there is a shortcut. The ngShow and ngHide directives display or hide an element from view by manipulating its display CSS property.
+        </p>
+        <p ng-hide="!isShowFooter">Reference : <a href="http://www.learn-angular.org/#!/lessons/visibility">Basic Directives - Visibility</a></p>
+    </div>
+</body>
+</html>

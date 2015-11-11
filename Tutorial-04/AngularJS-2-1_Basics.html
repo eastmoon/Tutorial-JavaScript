@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- html ng-app, setting this html page using angularJS. -->
+<!--
+Reference : ngApp, https://docs.angularjs.org/api/ng/directive/ngApp
+if the ngApp directive were not placed on the html element then the document would not be compiled, the AppController would not be instantiated.
+-->
+<html ng-app>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AngularJS-1</title>
+    <!-- Load AugularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <!-- Load JQuery -->
+    <script type="text/javascript" src="application/start.js"></script>
+</head>
+<body>
+    <div>
+        <label>Name:</label>
+        <!-- Declare input model to capture text change. -->
+        <input type="text" ng-model="yourName" placeholder="Enter a name here">
+        <hr>
+        <!-- Draw the data of model capture. -->
+        <h1>Hello {{yourName}}!</h1>
+    </div>
+</body>
+</html>

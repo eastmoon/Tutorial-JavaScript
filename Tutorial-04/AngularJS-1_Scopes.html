@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app="ng-scope">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AngularJS-1_Scope Demo</title>
+    <!-- Load AugularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script>
+        // Reference : https://docs.angularjs.org/guide/scope
+        // Each Angular application has exactly one root scope($rootScope), but may have several child scopes($scope)
+        // Each DIV element will assign to one controller, than child scope will be inside  DIV element.
+        angular.module('ng-scope', [])
+                .controller('GreetController', ['$scope', '$rootScope', function($scope, $rootScope) {
+                    $scope.name = 'World';
+                    $rootScope.department = 'Angular';
+                }])
+                .controller('ListController', ['$scope', function($scope) {
+                    $scope.names = ['Igor', 'Misko', 'Vojta'];
+                }])
+
+        // Scope Events Propagation
+        // Even nest child element have the same controller with parent, but scopes is difference.
+        // $on is setting an event listeners in Scopes.
+        // Reference : https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$on
+        // $emit('MyEvent'), $broadcast('MyEvent')  is dispatch an event. The event life cycle starts at the scope on which $emit or $broadcast was called, All listeners listening for "MyEvent" event on this scope get notified.
+        // Afterwards, $emit(), $broadcast() have difference pass though algorithm.
+        // Reference : https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$emit
+        // Reference : https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$broadcast
+                .controller('EventController', ['$scope', function($scope) {
+                    $scope.count = 0;
+                    $scope.$on('MyEvent', function() {
+                        $scope.count++;
+                    });
+                }]);
+    </script>
+    <style>
+        .show-scope-demo.ng-scope,
+        .show-scope-demo .ng-scope  {
+            border: 1px solid red;
+            margin: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Scope Hierarchies</h1>
+    <div class="show-scope-demo">
+        <div ng-controller="GreetController">
+            Hello {{name}}!
+        </div>
+        <div ng-controller="ListController">
+            <ol>
+                <li ng-repeat="name in names">{{name}} from {{department}}</li>
+            </ol>
+        </div>
+    </div>
+    <hr>
+    <h1>Scope Events Propagation</h1>
+    <div ng-controller="EventController">
+        Root scope <tt>MyEvent</tt> count: {{count}}
+        <ul>
+            <li ng-repeat="i in [1]" ng-controller="EventController">
+                <button ng-click="$emit('MyEvent')">Emitted</button>
+                <button ng-click="$broadcast('MyEvent')">Broadcast</button>
+                <br>
+                Middle scope <tt>MyEvent</tt> count: {{count}}
+                <ul>
+                    <li ng-repeat="item in [1, 2]" ng-controller="EventController">
+                        Leaf scope <tt>MyEvent</tt> count: {{count}}
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
