@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="ng-multi-module">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AngularJS-1_Multi Module Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script>
+        // Defined service module, directive module, filter module, etc.
+        var databank = angular.module("mm.service", []);
+        var directive = angular.module("mm.directive", []);
+        var filter = angular.module("mm.filter", []);
+        // Setting main module for controller, and merge several module.
+        var app = angular.module("ng-multi-module", ["mm.service", "mm.directive","mm.filter"]);
+
+        // Setting service module data.
+        databank.value("msg", "Hello world !!");
+        databank.value("intro", "It is intro content about this application.");
+
+        // Setting main module data.
+        app.controller("Controller", ["$scope", "msg", "intro",
+        function( a_scope, a_msg, a_intro) {
+            a_scope.msg = a_msg;
+            a_scope.intro = a_intro;
+        }])
+    </script>
+</head>
+<body>
+<h1>Multi module</h1>
+<div ng-controller="Controller">
+    Message : {{msg}}<br />
+    Intro : {{intro}}
+</div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html ng-app="ng-providerDemo">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AngularJS-1_Provider Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script>
+        // Reference : Creating A Factory Provider For The Configuration Phase In AngularJS,
+        // http://www.bennadel.com/blog/2788-creating-a-factory-provider-for-the-configuration-phase-in-angularjs.htm
+
+        // Create an application module.
+        var app = angular.module( "ng-providerDemo", []);
+
+        // Config :
+        // When the application is being bootstrapped, it execute the configuration phase first.
+        // During this phase, it can access to all the Providers, but the actual service objects that will not be created.
+        app.config( function configureApplication(greeterProvider) {
+            // Error setting.
+            greeterProvider.setGreeter("Good morning!");
+
+            // Right setting.
+            greeterProvider.setGreeter("Good morning, %s !");
+        });
+
+        // Run :
+        // When the application is bootstrapped complete, it will execute the running phase.
+        // During this phase, we can not access to any of the provider; but, we can access the services.
+        app.run( function StartApplication(greeter) {
+            console.info( "Testing greeter in .run() phase." );
+            console.log( greeter.greet( "Jacky" ) );
+            console.log( greeter.greet( "James" ) );
+            greeter.say(" it is test for say function.");
+            console.log( greeter.greet( "Eastmoon" ) );
+        });
+
+        // Provider :
+        app.provider( "greeter", function() {
+
+            // private variable, scope only in function.
+            var greetTemplate = "Hello, %s.";
+
+            // private function, scope only in function.
+            function testGreeting( newGreeting ) {
+                if ( ! newGreeting ) {
+                    throw( new Error( "InvalidGreeting" ) );
+                }
+                if ( newGreeting.search( "%[sS]" ) === -1 ) {
+                    throw( new Error( "InvalidGreeting" ) );
+                }
+            }
+
+            // provider public API and variable.
+            return {
+                // Use at providers, it can't use in run block, only config block.
+                getGreeter : function() {
+                    return greetTemplate;
+                },
+                setGreeter : function(newGreeting ) {
+                    try{
+                        testGreeting( newGreeting );
+                        greetTemplate = newGreeting;
+                    }
+                    catch( e )
+                    {
+                        console.info(e.toString());
+                    }
+                },
+                // Use at instantiates object, it can't use in config block, only run block.
+                $get : function() {
+                    return {
+                        greet : function( name ) {
+                        return greetTemplate.replace(/%s/gi, name);
+                        },
+                        say : function( word ) {
+                            return greetTemplate += ", " + word;
+                        }
+                    };
+                }
+            };
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

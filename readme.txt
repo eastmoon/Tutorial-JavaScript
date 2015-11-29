@@ -1,3 +1,4 @@
+Training scheme
 1. variable
 2. statement 
 	- http://en.wikipedia.org/wiki/Statement_%28computer_science%29
@@ -82,3 +83,13 @@ Web tools
 
 JSFIDDLE
 http://jsfiddle.net/
+
+
+=========================
+Reference doc
+
+前端工程師面試問題集
+https://gist.github.com/hanksudo/5873678
+
+陳鍾誠 / 課程 / JavaScript 第一門課
+http://ccc.nqu.edu.tw/wd.html#js1:home

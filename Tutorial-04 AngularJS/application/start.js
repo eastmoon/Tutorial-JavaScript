@@ -20,6 +20,7 @@ function includeScript(url, callback, mimetype)
 }
 
 // include script
+includeScript("https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js", null, "text/javascript");
 includeScript("http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js", loadApplicationMainJS, "text/javascript");
 
 // include application main JavaScript

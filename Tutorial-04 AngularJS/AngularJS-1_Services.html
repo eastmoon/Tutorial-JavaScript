@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html ng-app="ng-services">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AngularJS-1_Services Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script>
+        function ExclamationMarkIntro()
+        {
+            this.msg = "";
+            this.intro = "";
+            this.introCount = 0;
+            this.combineStr = function() {
+                return this.intro + this.introCount.toString();
+            }
+        }
+        angular.module("ng-services", [])
+            // Reference : https://docs.angularjs.org/guide/providers
+            // Value, setting a value / object in module.
+                .value("message", "Hello world!")
+                .value("intro", "Intro messageX!")
+                .value("msgObj", {"msg" : "default", "intro" : "default"})
+            // Factory, setting a object factory.
+                .factory("combineObj", function(message, intro) {
+                    var obj = {"msg" : message, "intro" : intro};
+                    return obj;
+                })
+                .factory("calculateObj", function(message, intro) {
+                    var obj = new ExclamationMarkIntro();
+                    obj.msg = message;
+                    obj.intro = intro;
+                    obj.introCount = 5;
+                    return obj;
+                })
+            // Service, setting a constructor function that setup input object.
+            // Reference : Constructor Injection, http://www.martinfowler.com/articles/injection.html#ConstructorInjectionWithPicocontainer
+                .service("calculateService", ["calculateObj", function( a_obj ) {
+                    for(i = 0 ; i < a_obj.introCount ; i++)
+                        a_obj.intro += "!";
+                    return a_obj;
+                }])
+            // Config, setting config value or setting function in provider, in this phase, all api service setting isn't ready.
+                .config(function() {
+                    window.alert("Execute Config");
+                })
+            // Run, when compile complete, run phase will execute, it almost  like main function in module.
+                .run(function() {
+                    window.alert("Execute Run");
+                })
+                .controller("Controller1", function($scope, message) {
+                    $scope.newMessage = message;
+                })
+                .controller("Controller2", ["$scope", "combineObj", function(a_scope, a_obj) {
+                    a_scope.newMessage = a_obj.msg;
+                    a_scope.newIntro = a_obj.intro;
+                }])
+                .controller("Controller3", ["$scope", "calculateObj", function(a_scope, a_obj) {
+                    a_scope.newMessage = a_obj.msg;
+                    a_scope.newIntro = a_obj.combineStr();
+                }])
+                .controller("Controller4", ["$scope", "calculateService", function(a_scope, a_obj) {
+                    a_scope.newMessage = a_obj.msg;
+                    a_scope.newIntro = a_obj.intro;
+                }]);
+    </script>
+</head>
+<body>
+    <h1>Value</h1>
+    <div ng-controller="Controller1">
+        Message : {{newMessage}}
+    </div>
+    <h1>Factory</h1>
+    <div ng-controller="Controller2">
+        Default Factory<br />
+        Message : {{newMessage}} <br />
+        Intro : {{newIntro}}
+    </div>
+    <br />
+    <div ng-controller="Controller3">
+        Create new object<br />
+        Message : {{newMessage}} <br />
+        Intro : {{newIntro}}
+    </div>
+    <h1>Service</h1>
+    <div ng-controller="Controller4">
+        Message : {{newMessage}} <br />
+        Intro : {{newIntro}}
+    </div>
+
+</body>
+</html>
