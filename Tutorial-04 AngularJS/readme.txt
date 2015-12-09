@@ -253,6 +253,55 @@ Ref：Dependency Injection, https://docs.angularjs.org/guide/di
 解釋上，這樣的系統如何對應DI設計，在於透過對應，可將Object各自分開完成設定，在執行時依需求指派對應的物件運行。
 且指派物件是以字串設定，表示字串來原可為外部資訊，亦即透過網址或其他來原，使單頁運行於的Object會因外部資訊變動，讓物件間互不依存。
 
+◎ Animation
+https://docs.angularjs.org/guide/animations
+http://www.nganimate.org/angularjs/tutorial/how-to-make-animations-with-angularjs
+https://css-tricks.com/animations-the-angular-way/
+
+Animations are not available unless you include the ngAnimate module as a dependency within your application.
+
+動畫系統不會有效運作，直到你對應用程式使用的model引入ngAnimate與js檔案。
+
+1. 引入JS檔案
+
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular-animate.js"></script>
+
+2. 引入Animate物件
+<html ng-app="ngAnimate">
+or
+angular.module("myModule", ["ngAnimate"]);
+
+Angular的動畫運作，原則是代入相對應的CSS物件，並依據流程替換。
+替換規則，則是依原物件的指定的style class為基礎，尋找有相應接續字串的CSS。
+
+<div class="check-element" ng-show="checked">
+
+上列元件的style class基礎即為check-element，觸發動畫指令為ng-show。
+※注意，並非所有指令皆能觸發動畫，可用於觸發動畫的指令與其接續字參考下文：
+https://docs.angularjs.org/api/ngAnimate#directive-support
+
+CSS名稱如下述：
+{CLASS}-{EVENT}
+{CLASS}-{EVENT}.ng-{EVENT}-active
+
+CSS使用流程
+1. 元件觸發動畫，自動將{CLASS}-{EVENT}加入Style中，並觸發CSS3指令。
+2. 動畫啟動前，在將{CLASS}-{EVENT}.ng-{EVENT}-active加入Style中，運行到動畫結束後刪除。
+
+網頁動畫推動原則是以CSS的Transitions為核心運作，相關細節可參考下文。
+http://www.w3schools.com/css/css3_transitions.asp
+
+Angular動畫運作，可以粗略分為：
+1. 指定CSS Style；利用JS指定某個元件的CSS Style並觸發動畫
+2. 使用Animate，如前文所述；這是針對特定元件，使其自動運用既存的CSS來觸發動畫。
+3. 使用animation service；這方式需混用JQuery，這方式不會再CSS內有任何動畫運作，而是直接使用JS操作。
+※ animation service呼叫所需的參數未必完全如官方文件所述，相關細節可參閱下文。
+http://www.sitepoint.com/javascript-animations-angularjs-applications/
+
+
+範例參考：利用animation service觸發事件並控制相對應的CSS文檔，以展示動畫與觸發動畫事件。
+http://www.angularjshub.com/examples/animations/animateservice/
+
 ---------------------
 
 Dependency Injection 設計觀念解讀：
@@ -301,3 +350,12 @@ http://huan-lin.blogspot.com/2011/10/dependency-injection-2.html
 「我曾在這樣的十字路口：努力學習各種模式，希望成為一個更好的軟體設計師；但現在，為了真正成為更優秀的軟體設計師，我必須降低對模式的依賴。」
 —— Joshua Kerievsky. 《Refactoring to Patterns》 作者
 	
+---------------------
+
+Directive Demo and Training
+
+◎ ngInclude
+https://docs.angularjs.org/api/ng/directive/ngInclude
+
+Fetches, compiles and includes an external HTML fragment.
+獲取、編譯、導入外部HTML片段。

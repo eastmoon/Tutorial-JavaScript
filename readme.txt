@@ -32,6 +32,9 @@ Tutorial list
 04¡G
 	- AngularJS
 
+05¡G
+	- JQuery Mobile
+
 X¡G
 	- One Page Scroll
 	- ref : http://www.smashingmagazine.com/2014/08/25/how-i-built-the-one-page-scroll-plugin/
@@ -45,6 +48,9 @@ http://beebom.com/2015/04/best-javascript-frameworks-and-libraries
 
 1. JQuery
 https://jquery.com/
+
+1-1. JQuery Mobile
+http://view.jquerymobile.com/master/demos/
 
 2. ExtJS
 https://www.sencha.com/products/extjs/#overview
@@ -84,6 +90,9 @@ Web tools
 JSFIDDLE
 http://jsfiddle.net/
 
+GoJS
+Interactive Diagrams for JavaScript and HTML
+http://gojs.net/latest/index.html?gclid=CLCzp_Wsv8kCFUYAvAod-U4LmA
 
 =========================
 Reference doc

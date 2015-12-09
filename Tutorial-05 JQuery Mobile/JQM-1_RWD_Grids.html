@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQM Basics demo</title>
+    <!-- jQuery lib download, http://jquerymobile.com/download/ -->
+    <!-- load jQuery-->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- load jQuery Mobile -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <!-- load css style -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <!-- Viewport meta tag, http://view.jquerymobile.com/master/demos/pages/#Viewportmetatag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <!-- /page -->
+    <div data-role="page" id="main-page">
+        <!-- /header -->
+        <div data-role="header">
+            <h2>Hello World！</h2>
+        </div>
+
+        <!-- /content -->
+        <div role="main" class="ui-content">
+
+            <!-- /grid-solo -->
+            <h1>Grid-solo</h1>
+            <div class="ui-grid-solo">
+                <div class="ui-block-a"><input type="button" value="Solo"></div>
+            </div>
+
+            <!-- /grid-a -->
+            <h1>Grid-a</h1>
+            <div class="ui-grid-a">
+                <div class="ui-block-a"><div class="ui-bar ui-bar-a">Block A</div></div>
+                <div class="ui-block-b"><div class="ui-bar ui-bar-b">Block B</div></div>
+            </div>
+            <fieldset class="ui-grid-a">
+                <div class="ui-block-a"><input type="submit" value="Submit" data-theme="a"></div>
+                <div class="ui-block-b"><input type="reset" value="Reset" data-theme="b"></div>
+            </fieldset>
+
+            <!-- /grid-b -->
+            <h1>Grid-b</h1>
+            <div class="ui-grid-d">
+                <div class="ui-block-a"><div class="ui-bar ui-bar-a">Block A</div></div>
+                <div class="ui-block-b"><div class="ui-bar ui-bar-b">Block B</div></div>
+            </div>
+            <fieldset class="ui-grid-b">
+                <div class="ui-block-a"><input type="submit" value="Submit" data-theme="a"></div>
+                <div class="ui-block-b"><input type="reset" value="Reset" data-theme="b"></div>
+                <div class="ui-block-c"><input type="submit" value="Cancel" data-theme="a"></div>
+            </fieldset>
+
+            <!-- /grid-b -->
+            <h1>Multi-giid</h1>
+            <div class="ui-grid-b">
+                <div class="ui-block-a"><div class="ui-bar ui-bar-a">Block A</div></div>
+                <div class="ui-block-b"><div class="ui-bar ui-bar-b">Block B</div></div>
+                <div class="ui-block-c"><div class="ui-bar ui-bar-a">Block C</div></div>
+                <div class="ui-block-a"><div class="ui-bar ui-bar-a">Block A</div></div>
+                <div class="ui-block-b"><div class="ui-bar ui-bar-b">Block B</div></div>
+                <div class="ui-block-c"><div class="ui-bar ui-bar-a">Block C</div></div>
+                <div class="ui-block-a"><div class="ui-bar ui-bar-a">Block A</div></div>
+                <div class="ui-block-a"><div class="ui-bar ui-bar-a">Block A</div></div>
+                <div class="ui-block-b"><div class="ui-bar ui-bar-b">Block B</div></div>
+                <div class="ui-block-c"><div class="ui-bar ui-bar-a">Block C</div></div>
+            </div>
+
+        </div>
+
+        <!-- /footer -->
+        <div data-role="footer">
+            <h1>It is footer.</h1>
+        </div>
+    </div>
+</body>
+</html>

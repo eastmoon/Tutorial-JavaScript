@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS-1_Animation Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
+    <script>
+        var app = angular.module("ng-animationApp",["ngAnimate"]);
+
+        app.controller("Controller1", function($scope) {
+            $scope.type = "box";
+            $scope.overIn = function() {
+                $scope.type = "circle";
+            };
+
+            $scope.overOut = function() {
+                $scope.type = "box";
+            };
+
+            $scope.over = function() {
+                if( $scope.type == "box")
+                    $scope.type = "circle";
+                else
+                    $scope.type = "box";
+            };
+        });
+
+        app.animation(".fade-item", function() {
+            return {
+                addClass: function (element, done) {
+                    alert("Show");
+                },
+                removeClass: function (element, done) {
+                    alert("Hide");
+                }
+            };
+        });
+
+        app.controller("Controller2", function($scope) {
+            $scope.isShow = false;
+            $scope.visible = function() {
+                $scope.isShow = !$scope.isShow;
+            };
+        });
+    </script>
+    <style>
+        /* Animation 1 */
+        .sample-show-hide {
+            padding:10px;
+            border:1px solid black;
+            background:white;
+        }
+
+        .sample-show-hide {
+            -webkit-transition:all linear 0.5s;
+            transition:all linear 0.5s;
+        }
+
+        .sample-show-hide.ng-hide {
+            padding:15px;
+            opacity:0;
+            background:black;
+        }
+
+        /* Animation 2 */
+        .css-class-add, .css-class-remove {
+            -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+            -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+            -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+            transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+        }
+
+        .css-class,
+        .css-class-add.ng-add-active {
+            color: red;
+            font-size:3em;
+        }
+
+        .css-class-remove.ng--remove-active {
+            font-size:1.0em;
+            color:black;
+        }
+
+        /* Animation 3 */
+        .box-add {
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .box {
+            margin: 50px auto;
+            background: #5FCF80;
+            width: 200px;
+            height: 150px;
+        }
+
+        .circle-add {
+            -webkit-transition: all 1s ease-in-out;
+            -moz-transition: all 1s ease-in-out;
+            -o-transition: all 1s ease-in-out;
+            transition: all 1s ease-in-out;
+        }
+
+        .circle {
+            -webkit-transition: rotate(360deg);
+            -moz-transition: rotate(360deg);
+            -o-transition: rotate(360deg);
+            transform: rotate(360deg);
+
+            margin: 50px auto;
+            width: 150px;
+            height: 150px;
+            background: #9351A6;
+            border-radius: 50%;
+        }
+
+        /* Animation 4 */
+    </style>
+</head>
+<!-- Animations are not available unless you include the ngAnimate module as a dependency within your application. -->
+<body ng-app="ng-animationApp">
+    <h1>Animation 1</h1>
+    <div ng-init="checked=true">
+        <label>
+            <input type="checkbox" ng-model="checked" style="float:left; margin-right:10px;"> Is Visible...
+        </label>
+        <div class="check-element sample-show-hide" ng-show="checked" style="clear:both;">
+            Visible...
+        </div>
+    </div>
+    <h1>Animation 2</h1>
+    <div>
+        <p>
+            <input type="button" value="set" ng-click="myCssVar='css-class'">
+            <input type="button" value="clear" ng-click="myCssVar=''">
+            <br>
+            <span ng-class="myCssVar">CSS-Animated Text</span>
+        </p>
+    </div>
+    <h1>Animation 3</h1>
+    <div ng-controller="Controller1">
+        <input type="button" value="set" ng-click="over()">
+        <div ng-class="type" ng-mouseover="overIn()" ng-mouseleave="overOut()"></div>
+    </div>
+    <h1>Animation 4</h1>
+    <div ng-controller="Controller2">
+        <input type="button" value="set" ng-click="visible()">
+        <div class="fade-item" style="clear:both;" ng-show="isShow">
+            I show up when your click.
+        </div>
+    </div>
+</body>
+</html>

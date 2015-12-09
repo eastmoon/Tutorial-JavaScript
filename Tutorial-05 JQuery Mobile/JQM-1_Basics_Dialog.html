@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQM Basics demo with dialog</title>
+    <!-- load jQuery-->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- load jQuery Mobile -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <!-- load css style -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <!-- Viewport meta tag, http://view.jquerymobile.com/master/demos/pages/#Viewportmetatag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div data-role="page" id="main-page">
+        <div data-role="header">
+            <h2>Hello World！</h2>
+        </div>
+
+        <div role="main" class="ui-content">
+            <h1>Open Dialog</h1>
+            <a href="#dialog-page-1" data-rel="dialog">Open dialog by link</a><br />
+            <a href="#dialog-page-2">Open dialog by setting attribute</a><br />
+            <a href="JQM-1_Basics_Dialog_ext.html">Open external dialog page</a>
+            <hr />
+            <h1>Button style</h1>
+            <a href="JQM-1_Basics_Dialog_ext.html" class="ui-shadowe" data-transition="pop">Open dialog</a>
+            <a href="JQM-1_Basics_Dialog_ext.html" class="ui-shadow ui-btn" data-transition="pop">Open dialog</a>
+            <a href="JQM-1_Basics_Dialog_ext.html" class="ui-shadow ui-btn ui-corner-all" data-transition="pop">Open dialog</a>
+            <a href="JQM-1_Basics_Dialog_ext.html" class="ui-btn ui-btn-inline" data-transition="pop">Open dialog</a>
+            <a href="JQM-1_Basics_Dialog_ext.html" class="ui-shadow ui-btn ui-corner-all ui-btn-inline" data-transition="pop">Open dialog</a>
+            <h1>Transitions</h1>
+            <a href="JQM-1_Basics_Dialog_ext.html" class="ui-shadow ui-btn ui-corner-all ui-btn-inline" data-transition="fade">Fade</a>
+            <a href="JQM-1_Basics_Dialog_ext.html" class="ui-shadow ui-btn ui-corner-all ui-btn-inline" data-transition="pop">Pop</a>
+            <a href="JQM-1_Basics_Dialog_ext.html" class="ui-shadow ui-btn ui-corner-all ui-btn-inline" data-transition="flip">Flip</a>
+            <a href="JQM-1_Basics_Dialog_ext.html" class="ui-shadow ui-btn ui-corner-all ui-btn-inline" data-transition="turne">Turn</a>
+            <a href="JQM-1_Basics_Dialog_ext.html" class="ui-shadow ui-btn ui-corner-all ui-btn-inline" data-transition="flow">Flow</a>
+            <a href="JQM-1_Basics_Dialog_ext.html" class="ui-shadow ui-btn ui-corner-all ui-btn-inline" data-transition="slidefade">Slidefade</a>
+            <a href="JQM-1_Basics_Dialog_ext.html" class="ui-shadow ui-btn ui-corner-all ui-btn-inline" data-transition="slide">Slide</a>
+            <a href="JQM-1_Basics_Dialog_ext.html" class="ui-shadow ui-btn ui-corner-all ui-btn-inline" data-transition="slideup">Slideup</a>
+            <a href="JQM-1_Basics_Dialog_ext.html" class="ui-shadow ui-btn ui-corner-all ui-btn-inline" data-transition="slidedown">Slidedown</a>
+            <a href="JQM-1_Basics_Dialog_ext.html" class="ui-shadow ui-btn ui-corner-all ui-btn-inline" data-transition="none">None</a>
+            <h1>Chaining dialogs</h1>
+            <a href="JQM-1_Basics_Dialog_ext_chaining.html" class="ui-shadow ui-btn ui-corner-all ui-btn-inline" data-transition="none">Chaining Dialog</a>
+            <h1>Custom dialogs</h1>
+            <a href="JQM-1_Basics_Dialog_ext_custom.html" class="ui-shadow ui-btn ui-corner-all ui-btn-inline" data-transition="none">Custom Dialog</a>
+        </div>
+
+        <div data-role="footer">
+            <h1>It is footer.</h1>
+        </div>
+    </div>
+
+    <div data-role="page" id="dialog-page-1">
+        <div data-role="header">
+            <h2>Title</h2>
+        </div>
+
+        <div role="main" class="ui-content">
+            <p>This is a regular page, styled as a dialog. To create a dialog, just link to a normal page and include a transition and data-rel="dialog" attribute.</p>
+            <code>a href="#page" data-rel="dialog"</code><br />
+            <a href="#main-page">Close</a>
+        </div>
+
+        <div data-role="footer">
+            <h1>Footer.</h1>
+        </div>
+    </div>
+
+    <div data-role="page" data-dialog="true" id="dialog-page-2">
+        <div data-role="header">
+            <h2>Title</h2>
+        </div>
+
+        <div role="main" class="ui-content">
+            <p>This is a regular page, and setting styled as a dialog.</p>
+            <code>div data-role="page" data-dialog="true" id="xxx"</code><br />
+            <a href="#main-page">Close</a>
+        </div>
+
+        <div data-role="footer">
+            <h1>Footer.</h1>
+        </div>
+    </div>
+</body>
+</html>

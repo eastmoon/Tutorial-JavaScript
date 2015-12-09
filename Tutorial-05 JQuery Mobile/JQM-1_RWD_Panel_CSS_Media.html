@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" class="ui-mobile">
+<head>
+    <meta charset="UTF-8">
+    <title>JQM Basics demo with Multi-page</title>
+    <!-- load jQuery-->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- load jQuery Mobile -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <!-- load css style -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <!-- Viewport meta tag, http://view.jquerymobile.com/master/demos/pages/#Viewportmetatag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div data-role="page" id="main-page" class="cui-responsive-panel">
+
+        <!-- /header -->
+        <div data-role="header" data-position="fixed">
+            <h2>Hello World！</h2>
+        </div>
+
+        <!-- /content -->
+        <div role="main" class="ui-conten jqm-content">
+            <!-- Link -->
+            <a href="#panel-l-o" data-rel="close">Left-Overlay</a><br />
+            <a href="#panel-r-p" data-rel="close">Right-Push</a>
+
+        </div>
+
+        <!-- /footer -->
+        <div data-role="footer" data-position="fixed">
+            <h1>It is footer.</h1>
+        </div>
+
+        <!-- /panel -->
+        <div data-role="panel" data-position="left" data-display="overlay" id="panel-l-o" class="jqm-navmenu-panel" data-position-fixed="true" data-theme="a">
+            NAV MENU PANEL !!
+            <a href="#mmain-page" data-rel="close">Close panel</a>
+        </div>
+        <div data-role="panel" data-position="right" data-display="push" id="panel-r-p" data-dismissible="false">
+            LEFT PANEL !!
+            <a href="#main-page" data-rel="close">Close panel</a>
+        </div>
+    </div>
+</body>
+<style>
+    @media (min-width: 60em) {
+        .jqm-navmenu-panel {
+            visibility: visible;
+            position: relative;
+            left: 0;
+            clip: initial;
+            float: left;
+            width: 20%;
+            background: none;
+            -webkit-transition: none !important;
+            -moz-transition: none !important;
+            transition: none !important;
+            -webkit-transform: none !important;
+            -moz-transform: none !important;
+            transform: none !important;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+        }
+        .jqm-content {
+            width: 75%;
+            padding-left: 2.5%;
+            padding-right: 2.5%;
+            float: right;
+        }
+    }
+</style>
+</html>

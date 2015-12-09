@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQM Basics demo</title>
+    <!-- jQuery lib download, http://jquerymobile.com/download/ -->
+    <!-- load jQuery-->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- load jQuery Mobile -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <!-- load css style -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <!-- Viewport meta tag, http://view.jquerymobile.com/master/demos/pages/#Viewportmetatag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- /page -->
+    <div data-role="page" id="main-page">
+        <!-- /header -->
+        <div data-role="header">
+            <h2>Hello World！</h2>
+        </div>
+
+        <!-- /content -->
+        <div role="main" class="ui-content">
+            <!-- /grid-b -->
+            <h1>Grid-b</h1>
+            <div class="ui-grid-b">
+                <div class="ui-block-a"><div class="ui-bar ui-bar-a">Block A</div></div>
+                <div class="ui-block-b"><div class="ui-bar ui-bar-b">Block B</div></div>
+                <div class="ui-block-c"><div class="ui-bar ui-bar-a">Block C</div></div>
+            </div>
+        </div>
+        <form class="ui-grid-b">
+            <div class="ui-block-a">
+                <label for="grid-select-1" class="ui-hidden-accessible">Select</label>
+                <select id="grid-select-1" name="grid-select-1" data-shadow="false">
+                    <option>Select</option>
+                    <option value="1">The 1st Option</option>
+                    <option value="2">The 2nt Option</option>
+                    <option value="3">The 3rd Option</option>
+                    <option value="4">The 4th Option</option>
+                </select>
+            </div>
+            <div class="ui-block-b">
+                <label for="grid-checkbox-1">Checkbox</label>
+                <input type="checkbox" id="grid-checkbox-1" name="grid-checkbox-1">
+            </div>
+            <div class="ui-block-c">
+                <label for="grid-radio-1">Radio</label>
+                <input type="radio" id="grid-radio-1" name="grid-radio-1">
+            </div>
+        </form>
+
+        <h1>Check box</h1>
+        <div class="ui-grid-solo">
+            <div class="ui-block-a">
+                <label for="grid-checkbox-2">Checkbox 1</label>
+                <input type="checkbox" id="grid-checkbox-2" name="grid-checkbox-1">
+                <label for="grid-checkbox-3">Checkbox 2</label>
+                <input type="checkbox" id="grid-checkbox-3" name="grid-checkbox-1">
+            </div>
+        </div>
+
+        <h1>Radio box</h1>
+        <div class="ui-grid-solo">
+            <div class="ui-block-a">
+                <label for="grid-radio-2">Radio 1</label>
+                <input type="radio" id="grid-radio-2" name="grid-radio-2" value="radio 1">
+                <label for="grid-radio-3">Radio 2</label>
+                <input type="radio" id="grid-radio-3" name="grid-radio-2" value="radio 2">
+                <input type="button" value="submit" onclick="window.alert($( 'input:checked' ).val());" />
+            </div>
+        </div>
+
+        <!-- /footer -->
+        <div data-role="footer">
+            <div class="ui-grid-d center">
+                <div class="ui-block-a"><a class="ui-shadow ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext ui-btn-inline">Button</a></div>
+                <div class="ui-block-b"><a class="ui-shadow ui-btn ui-corner-all ui-icon-arrow-l ui-btn-icon-notext ui-btn-inline">Button</a></div>
+                <div class="ui-block-c"><a class="ui-shadow ui-btn ui-corner-all ui-icon-grid ui-btn-icon-notext ui-btn-inline">Button</a></div>
+                <div class="ui-block-d"><a class="ui-shadow ui-btn ui-corner-all ui-icon-arrow-r ui-btn-icon-notext ui-btn-inline">Button</a></div>
+                <div class="ui-block-e"><a class="ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-notext ui-btn-inline">Button</a></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

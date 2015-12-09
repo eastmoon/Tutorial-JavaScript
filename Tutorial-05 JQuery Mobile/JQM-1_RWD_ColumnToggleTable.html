@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQM Basics demo</title>
+    <!-- jQuery lib download, http://jquerymobile.com/download/ -->
+    <!-- load jQuery-->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- load jQuery Mobile -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <!-- load css style -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <!-- Viewport meta tag, http://view.jquerymobile.com/master/demos/pages/#Viewportmetatag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <!-- /page -->
+    <div data-role="page" id="main-page">
+        <!-- /header -->
+        <div data-role="header">
+            <h2>Hello World！</h2>
+        </div>
+
+        <!-- /content -->
+        <div role="main" class="ui-content">
+                <table data-role="table" id="temp-table" data-mode="columntoggle"  class="table-stripe ui-responsive " data-column-btn-theme="b" data-column-btn-text="Display Column..." data-column-popup-theme="b">
+                    <thead>
+                    <tr>
+                        <th data-priority="persist">Paris</th>
+                        <th colspan="2" data-priority="1">Average Temperatures (C)</th>
+                        <th colspan="2" data-priority="2">Average Rainfall</th>
+                    </tr>
+                    <tr>
+                        <th data-priority="persist">Month</th>
+                        <th data-priority="1">Minimum Temp</th>
+                        <th data-priority="1">Maximum Temp</th>
+                        <th data-priority="2">Precipitation (mm)</th>
+                        <th data-priority="2">Rainfall Days</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th>January</th>
+                        <td>3</td>
+                        <td>8</td>
+                        <td>17.8</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <th>February</th>
+                        <td>2</td>
+                        <td>9</td>
+                        <td>21.7</td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <th>March</th>
+                        <td>4</td>
+                        <td>13</td>
+                        <td>24.2</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <th>April</th>
+                        <td>6</td>
+                        <td>15</td>
+                        <td>24.6</td>
+                        <td>11</td>
+                    </tr>
+                    <tr>
+                        <th>May</th>
+                        <td>10</td>
+                        <td>20</td>
+                        <td>26.2</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <th>June</th>
+                        <td>13</td>
+                        <td>23</td>
+                        <td>25.1</td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <th>July</th>
+                        <td>15</td>
+                        <td>25</td>
+                        <td>21.7</td>
+                        <td>7</td>
+                    </tr>
+                    <tr>
+                        <th>August</th>
+                        <td>15</td>
+                        <td>25</td>
+                        <td>21.4</td>
+                        <td>7</td>
+                    </tr>
+                    <tr>
+                        <th>September</th>
+                        <td>11</td>
+                        <td>21</td>
+                        <td>15.6</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <th>October</th>
+                        <td>9</td>
+                        <td>17</td>
+                        <td>25.3</td>
+                        <td>11</td>
+                    </tr>
+                    <tr>
+                        <th>November</th>
+                        <td>5</td>
+                        <td>11</td>
+                        <td>22.4</td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <th>December</th>
+                        <td>3</td>
+                        <td>8</td>
+                        <td>26.6</td>
+                        <td>12</td>
+                    </tr>
+                    </tbody>
+                </table>
+        </div>
+
+        <!-- /footer -->
+        <div data-role="footer">
+            <style>
+                .center{
+                    text-align: center;
+                }
+            </style>
+            <div class="ui-grid-d center">
+                <div class="ui-block-a"><a class="ui-shadow ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext ui-btn-inline">Button</a></div>
+                <div class="ui-block-b"><a class="ui-shadow ui-btn ui-corner-all ui-icon-arrow-l ui-btn-icon-notext ui-btn-inline">Button</a></div>
+                <div class="ui-block-c"><a class="ui-shadow ui-btn ui-corner-all ui-icon-grid ui-btn-icon-notext ui-btn-inline">Button</a></div>
+                <div class="ui-block-d"><a class="ui-shadow ui-btn ui-corner-all ui-icon-arrow-r ui-btn-icon-notext ui-btn-inline">Button</a></div>
+                <div class="ui-block-e"><a class="ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-notext ui-btn-inline">Button</a></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

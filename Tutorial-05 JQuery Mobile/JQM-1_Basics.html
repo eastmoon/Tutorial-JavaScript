@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQM Basics demo</title>
+    <!-- jQuery lib download, http://jquerymobile.com/download/ -->
+    <!-- load jQuery-->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- load jQuery Mobile -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <!-- load css style -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <!-- Viewport meta tag, http://view.jquerymobile.com/master/demos/pages/#Viewportmetatag
+        If this isn't set, many mobile browsers will use a "virtual" page width around 900 pixels.
+        By setting the viewport attributes, it mean the width will be set to the pixel width of the device screen.
+        -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <!-- /page -->
+    <div data-role="page" id="main-page">
+        <!-- /header -->
+        <div data-role="header">
+            <h2>Hello World！</h2>
+        </div>
+
+        <!-- /content -->
+        <div role="main" class="ui-content">
+            <p>This is content in mobile web page</p>
+        </div>
+
+        <!-- /footer -->
+        <div data-role="footer">
+            <h1>It is footer.</h1>
+        </div>
+    </div>
+</body>
+</html>
