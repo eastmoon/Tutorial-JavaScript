@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQM Basics demo</title>
+    <!-- jQuery lib download, http://jquerymobile.com/download/ -->
+    <!-- load jQuery-->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- load jQuery Mobile -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <!-- load css style -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <!-- Viewport meta tag, http://view.jquerymobile.com/master/demos/pages/#Viewportmetatag
+        If this isn't set, many mobile browsers will use a "virtual" page width around 900 pixels.
+        By setting the viewport attributes, it mean the width will be set to the pixel width of the device screen.
+        -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <!-- /page -->
+    <div data-role="page" id="main-page">
+        <!-- /header -->
+        <div data-role="header">
+            <h2>Hello World！</h2>
+        </div>
+
+        <!-- /content -->
+        <div role="main" class="ui-content">
+            <p>This is content in mobile web page</p>
+
+            <a href="#myPopup1" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all">Show Popup</a>
+
+            <div data-role="popup" id="myPopup1" class="ui-content">
+                <p>This is a simple popup.</p>
+            </div>
+
+            <a href="#myPopup2" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all">Show Popup</a>
+
+            <div data-role="popup" id="myPopup2" class="ui-content">
+                <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+                <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-left">Close</a>
+                <p>This is a simple popup and add close button.</p>
+            </div>
+
+
+            <a href="#myPopup3" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all">Show Popup</a>
+
+            <div data-role="popup" id="myPopup3" class="ui-content" data-dismissible="false">
+                <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+                <p>It can't close by clicking outside.</p>
+            </div>
+
+            <hr>
+
+            <a href="#myPopup4" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all" data-position-to="window">Show To winodw</a>
+            <a href="#myPopup4" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all" data-position-to="#demo">Show To element id</a>
+            <a href="#myPopup4" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all" data-position-to="origin">Show To origin</a>
+
+            <div data-role="popup" id="myPopup4" class="ui-content">
+                <p>Difference link will popup in difference place.</p>
+            </div>
+            <p><span id="demo">Demo</span></p>
+
+            <hr>
+
+            <a href="#myPopup5" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all" data-position-to="window" data-transition="flip">Show To winodw</a>
+            <div data-role="popup" id="myPopup5" class="ui-content">
+                <p>Transition method reference JQM-1_Basics_Dialog demo.</p>
+            </div>
+
+            <hr>
+            <a href="#myPopup6" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all" data-position-to="#demo2" data-transition="pop">Arror to element</a>
+            <!-- Reference : http://www.w3schools.com/jquerymobile/tryit.asp?filename=tryjqmob_popup_arrow-->
+            <div data-role="popup" id="myPopup6" class="ui-content" data-arrow="l">
+                <p>This popup has an arrow to element border. </p>
+            </div>
+            <p><span id="demo2">Demo</span></p>
+
+            <hr>
+            <a href="#myPopup7" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all" data-position-to="window" data-transition="slidedown">Popup Dialog</a>
+            <!-- Reference : http://www.w3schools.com/jquerymobile/tryit.asp?filename=tryjqmob_popup_dialog -->
+            <!-- Reference : http://www.w3schools.com/jquerymobile/tryit.asp?filename=tryjqmob_popup_overlay -->
+            <div data-role="popup" id="myPopup7" class="ui-content rwd-popup" data-dismissible="false" data-overlay-theme="b">
+                <div data-role="header">
+                    <h1>Title</h1>
+                </div>
+
+                <div data-role="main" class="ui-content">
+                    <h2>Popup Dialog!</h2>
+                    <p>It is content!!</p>
+                    <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-icon-back ui-btn-icon-left" data-rel="back">Go Back</a>
+                </div>
+
+                <div data-role="footer">
+                    <h1>Footer</h1>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- /footer -->
+        <div data-role="footer">
+            <h1>It is footer.</h1>
+        </div>
+    </div>
+</body>
+<style>
+</style>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" class="ui-mobile">
+<head>
+    <meta charset="UTF-8">
+    <title>JQM Basics demo with Multi-page</title>
+    <!-- load jQuery-->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- load jQuery Mobile -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <!-- load css style -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <!-- Viewport meta tag, http://view.jquerymobile.com/master/demos/pages/#Viewportmetatag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div data-role="page" id="main-page" class="ui-responsive-panel">
+
+        <!-- /header -->
+        <div data-role="header" data-position="fixed">
+            <div class="ui-grid-b" style="text-align: center">
+                <div class="ui-block-a"><a class="rwd-useless-btn ui-shadow ui-btn ui-corner-all ui-icon-grid ui-btn-icon-notext ui-btn-inline" href="#panel-navmenu" data-rel="close">Button</a></div>
+                <h2 class="ui-block-b">Demo Game</h2>
+                <div class="ui-block-c"><a class="ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-notext ui-btn-inline" href="#panel-config" data-rel="close">Button</a></div>
+            </div>
+        </div>
+
+        <!-- /content -->
+        <div role="main" class="ui-content rwd-content">
+            <div data-role="panel" data-position="left" data-display="overlay" id="panel-select" class="rwd-select-panel" data-position-fixed="true" data-theme="a">
+                <h3>Share Photos</h3>
+                <a href="https://demos.jquerymobile.com//1.1.0/docs/pages/dialog-success.html" data-role="button" data-rel="dialog" data-transition="slidedown" data-theme="b" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-b"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Email</span></span></a>
+                <a href="https://demos.jquerymobile.com//1.1.0/docs/pages/dialog-success.html" data-role="button" data-rel="dialog" data-transition="slidedown" data-theme="b" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-b"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Upload to flickr</span></span></a>
+                <a href="https://demos.jquerymobile.com//1.1.0/docs/pages/dialog-success.html" data-role="button" data-rel="dialog" data-transition="slidedown" data-theme="b" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-b"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Share on Facebook</span></span></a>
+                <a href="https://demos.jquerymobile.com//1.1.0/docs/pages/dialog-success.html" data-role="button" data-rel="dialog" data-transition="slidedown" data-theme="b" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-b"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">Tweet photo</span></span></a>
+                <a href="#mmain-page" class="rwd-useless-btn ui-shadow ui-btn ui-corner-all" data-rel="close">Cancel</a>
+            </div>
+            <a href="#panel-select" class="rwd-useless-btn ui-shadow ui-btn ui-corner-all" data-rel="close">Select Game model</a>
+            <p>it is content.</p>
+        </div>
+
+        <!-- /footer -->
+        <div data-role="footer" data-position="fixed">
+            <div class="ui-grid-b" style="text-align: center">
+                <div class="ui-block-a"><a class="ui-shadow ui-btn ui-corner-all ui-icon-arrow-l ui-btn-icon-notext ui-btn-inline">Button</a></div>
+                <div class="ui-block-b"><a class="ui-shadow ui-btn ui-corner-all ui-icon-home ui-btn-icon-notext ui-btn-inline">Button</a></div>
+                <div class="ui-block-c"><a class="ui-shadow ui-btn ui-corner-all ui-icon-arrow-r ui-btn-icon-notext ui-btn-inline">Button</a></div>
+            </div>
+        </div>
+
+        <!-- /panel -->
+        <div data-role="panel" data-position="left" data-display="overlay" id="panel-navmenu" class="rwd-navmenu-panel" data-position-fixed="true" data-theme="a">
+            <h3>NAV MENU</h3>
+            <a href="#mmain-page" class="rwd-useless-btn ui-shadow ui-btn ui-corner-all" data-rel="close">Close</a>
+        </div>
+        <div data-role="panel" data-position="right" data-display="overlay" id="panel-config" data-dismissible="false">
+            <h3>Tools PANEL</h3>
+            <a href="#main-page" data-rel="close" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-a">Close</a>
+        </div>
+    </div>
+</body>
+<style>
+    @media (min-width: 60em) {
+        .rwd-navmenu-panel {
+            visibility: visible;
+            position: relative;
+            left: 50;
+            clip: initial;
+            float: left;
+            width: 20%;
+            background: none;
+            -webkit-transition: none !important;
+            -moz-transition: none !important;
+            transition: none !important;
+            -webkit-transform: none !important;
+            -moz-transform: none !important;
+            transform: none !important;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+        }
+        .rwd-useless-btn {
+            visibility: hidden;
+            display: none;
+        }
+        .rwd-select-panel {
+            visibility: visible;
+            position: relative;
+            left: 0;
+            clip: initial;
+            width: 100%;
+            background: none;
+            -webkit-transition: none !important;
+            -moz-transition: none !important;
+            transition: none !important;
+            -webkit-transform: none !important;
+            -moz-transform: none !important;
+            transform: none !important;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+        }
+        .rwd-content {
+            width: 75%;
+            padding-left: 2.5%;
+            padding-right: 2.5%;
+            float: right;
+        }
+    }
+</style>
+</html>

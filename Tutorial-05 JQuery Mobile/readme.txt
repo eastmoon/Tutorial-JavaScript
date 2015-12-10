@@ -35,6 +35,8 @@ Page基本用於Div元件，其下可再細分為三個資料細節。
 
 一個Page若要以對話框呈現，只要以連結方式指向Page的ID，並於屬性內加上data-dialog="true"；轉場方式亦可設定於連結中。
 
+JavaScript code reference：https://api.jquerymobile.com/dialog/#option-closeBtn
+
 ◎ Link
 相關Link格式參考下文：
 http://demos.jquerymobile.com/1.0a4/docs/pages/link-formats.html
@@ -219,10 +221,51 @@ http://www.w3schools.com/css/css3_mediaqueries_ex.asp
 
 利用媒體環境對應，額外增設CSS Style來改變整體狀態。
 
+◎ Popup
+http://www.w3schools.com/jquerymobile/jquerymobile_popups.asp
+Demo：JQM-1_Basics_Popup
+
+彈出(Popup)基準用於內容提示，但亦可用於將繁瑣內文以額外區域展開的處裡。
+
+使用Popup需有Attribute
+1. data-role="popup"，指定此元件為彈出元件。
+2. id="xx"，指定此元件id，利於按鈕等觸發彈出行為。
+3. data-dismissible={true | false}，禁止彈出後可點選其他位置關閉。
+	- 若為false，該元件內應存有關閉按鈕：class="ui-btn-right"，標記顯示於右上方；class="ui-btn-left"，標記顯示於左上方。
+	<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+4. data-arrow，此彈出用箭頭標示於顯示位置的元件邊緣。
+5. data-overlay-theme，此彈出背景的Theme style。
+
+Link呼叫Popup可用Attribute
+1. data-position-to={window | #xxx | origin}，此彈出元件顯示的位置。
+	- window，視窗中央。
+	- #xxx，id="xxx"的元件。
+	- origin，當前觸發行為的位置。
+2. data-transition=xxx，以xxx的轉場方式呈現。
+	- 詳細參考前文，Link轉場。
+
+彈出元件內可為另一個Page架構，但顯示內容為彈出形式。
+
 ---------------------------------
+
+jQuery Mobile examples
+http://www.w3schools.com/jquerymobile/jquerymobile_examples.asp
 
 Reference : jQuery Mobile element attribute
 http://www.w3schools.com/jquerymobile/jquerymobile_ref_data.asp
 
 JQuery Mobile 框架介紹與使用 20140713
 http://www.slideshare.net/EZoApp/jquery-mobile-20140713
+
+Magnific Popup
+http://dimsemenov.com/plugins/magnific-popup/
+
+Responsive Web Design
+http://alistapart.com/article/responsive-web-design
+
+Media Query Change Detection in JavaScript Through CSS Animations
+https://css-tricks.com/media-query-change-detection-in-javascript-through-css-animations/
+
+Enquire.js
+Awesome Media Queries in JavaScript
+http://wicky.nillia.ms/enquire.js/
