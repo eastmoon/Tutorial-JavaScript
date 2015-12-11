@@ -248,6 +248,40 @@ Link呼叫Popup可用Attribute
 
 ---------------------------------
 
+設計選單共用於全系統的常用方式：
+http://roughlybrilliant.com/three_ways_to_implement_a_global_menu_in_jquery_mobile
+Demo：JQM-2_Design_RWD_Layout_4
+
+使用jQuery Mobile，若要改變JQM元件配置位置，參考下文。
+
+1. header、footer可於page外，請依下文設定：
+http://demos.jquerymobile.com/1.4.4/toolbar-external/
+http://jsfiddle.net/koala_dev/DgdMg/2/
+http://jsfiddle.net/U5bnm/
+
+(1. 將header、footer放置於body下
+(2. 當文件啟動完畢，執行下列JavaScript
+$(function(){
+	$( "[data-role='header']" ).toolbar({ theme: "a" });
+	$( "[data-role='footer']" ).toolbar({ theme: "a" });
+});
+將擁有屬性data-role='header'、data-role='footer'的元件設定為toolbar，並指定其樣式為"a"類。
+
+2. panel若在page外，將不接受自動設定，以此啟動其效果；若要改為外部，請依下文設定：
+http://demos.jquerymobile.com/1.4.5/panel-external/
+https://demos.jquerymobile.com/1.4.5/panel-external-internal/index.html
+
+(1. 將panel放置於body下
+(2. 當文件啟動完畢，執行下列JavaScript
+
+$( "body > [data-role='panel']" ).panel();
+對所有<body>下擁有屬性data-role='panel'的元件，啟動panel功能。
+
+3. popup可於page外，將依下文設定：
+http://demos.jquerymobile.com/1.4.2/popup-outside-multipage/
+
+---------------------------------
+
 jQuery Mobile examples
 http://www.w3schools.com/jquerymobile/jquerymobile_examples.asp
 
