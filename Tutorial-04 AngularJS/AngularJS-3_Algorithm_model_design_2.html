@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html ng-app="algorithm-model">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AngularJS-3 Aglorithm model design 2</title>
+    <!-- load jQuery-->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- load angularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script>
+        // Reference : http://blog.thoughtram.io/angular/2015/07/07/service-vs-factory-once-and-for-all.html
+        // Reference : http://stackoverflow.com/questions/15666048/angularjs-service-vs-provider-vs-factory
+
+        // Reference : http://anandmanisankar.com/posts/angularjs-provider-subsystem/
+        // Factory, Service, Provider demo : http://jsbin.com/ohamub/1/edit?html,output
+
+        // Provider
+        // Reference : http://slides.wesalvaro.com/20121113/#/
+
+        // It is not difference with factory and service, only diference is what happens behind the scenes.
+        // and "All angular services are singletons:", so, even new object in service and take back, it will allow the same one.
+        // Create an application module.
+        var app = angular.module( "algorithm-model", []);
+
+        function myMath() {
+            this.Var1 = 1;
+            this.Var2 = 1;
+            this.Addition = function() {
+                return this.Var1 + this.Var2;
+            };
+        }
+
+        app.factory( "myMathF", function() {
+            return {
+                Var1 : 1,
+                Var2 : 1,
+                Addition: function() {
+                    return this.Var1 + this.Var2;
+                },
+            };
+        });
+
+        app.service("myMathS", function(myMathF) {
+            this.Var1 = 1;
+            this.Var2 = 1;
+            this.Addition = function() {
+                return this.Var1 + this.Var2;
+            };
+        });
+
+        $(document).ready(function() {
+            // Use angular.element to take back model object and injector.
+            // This function could be run, jquery must load in page, and make sure page-compute.
+            var injector = angular.element(document.body).injector();
+            var service;
+
+            // Factory
+            console.info("Factory");
+            // 1. get object
+            service = injector.get('myMathF');
+            console.log(("1 + 1 = " + service.Addition()));
+            // 2. modify variable
+            service.Var1 = 5;
+            console.log(("5 + 1 = " + service.Addition()));
+            // 3. retake subject
+            service = injector.get('myMathF');
+            console.log(("5 + 1 = " + service.Addition()));
+
+            // Service
+            console.info("Service");
+            // 1. get object
+            service = injector.get('myMathS');
+            console.log(("1 + 1 = " + service.Addition()));
+            // 2. modify variable
+            service.Var1 = 5;
+            console.log(("5 + 1 = " + service.Addition()));
+            // 3. retake subject
+            service = injector.get('myMathS');
+            console.log(("5 + 1 = " + service.Addition()));
+
+            // New object
+            console.info("New object");
+            // 1. get object
+            service = new myMath();
+            console.log(("1 + 1 = " + service.Addition()));
+            // 2. modify variable
+            service.Var1 = 5;
+            console.log(("5 + 1 = " + service.Addition()));
+            // 3. retake subject
+            service = new myMath();
+            console.log(("5 + 1 = " + service.Addition()));
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

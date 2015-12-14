@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="algorithm-model">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AngularJS-3 Aglorithm model design 1</title>
+    <!-- load jQuery-->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- load angularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script>
+        // Reference : https://docs.angularjs.org/api/ng/function/angular.element
+        // Reference : http://stackoverflow.com/questions/13613288/angularjs-i-need-to-update-a-service-from-outside-of-angular
+        // Reference : http://stackoverflow.com/questions/21312948/service-functions-outside-angularjs-scope
+        // Create an application module.
+        var app = angular.module( "algorithm-model", []);
+        // use factory to setting mathematical algorithm
+        app.factory( "myMath", function() {
+            return {
+                Addition: function( a_a, a_b ) {
+                    return a_a + a_b;
+                },
+                Subtraction : function( a_a, a_b ) {
+                    return a_a - a_b;
+                },
+                Accumulator: function( a_a, a_b ) {
+                    return a_a += a_b;
+                }
+            };
+        });
+
+        $(document).ready(function() {
+            // Use angular.element to take back model object and injector.
+            // This function could be run, jquery must load in page, and make sure page-compute.
+            var injector = angular.element(document).injector();
+            // Use injector object to take back service.
+            var service = injector.get('myMath');
+
+            console.log(("1 + 1 = " + service.Addition(1,1)));
+            console.log(("1 - 1 = " + service.Subtraction(1,1)));
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

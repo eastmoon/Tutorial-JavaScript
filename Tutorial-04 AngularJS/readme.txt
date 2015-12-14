@@ -304,6 +304,71 @@ http://www.angularjshub.com/examples/animations/animateservice/
 
 ---------------------
 
+動態載入與外部使用：
+http://stackoverflow.com/questions/13613288/angularjs-i-need-to-update-a-service-from-outside-of-angular
+Demo：AngularJS-3_Algorithm_model_design_1
+
+AngularJS的核心流程如下：
+1. ng-app = module，對應文件與模組
+2. ng-controller = controller，DOM元素對應控制器
+
+其餘程式運作原則是對應於物件儲存與管理，諸如：Service等。
+當物件設定好，若不透過injector程序，以參數載入controller內，就必須以其他方式產生。
+因此，若外部(指controller外)的程式若要取回其內容，其過程如下：
+
+1. 確保載入jQuery，以使用angular.element。
+https://docs.angularjs.org/api/ng/function/angular.element
+
+2. 必須透過angular物件取回injector物件
+var injector = angular.element(document).ingector();
+
+3. 透過injector取回模組儲存物件
+injector操作細節，參考下文：
+https://docs.angularjs.org/api/auto/service/$injector
+
+var service = injector.get("service-name");
+
+原則上，這設計方式用於檢查或經由外部演算修改內容為主。
+如範例文內所寫，在載入內容後取得資訊並改寫，使其反應於畫面。
+但這也可以用於動態載入Service，當使用者選擇不同行為，載入不同運算物件。
+
+---------------------
+
+Proveider、Service、Factory 差別：
+http://blog.thoughtram.io/angular/2015/07/07/service-vs-factory-once-and-for-all.html
+Demo：AngularJS-3_Algorithm_model_design_2
+
+『All angular services are singletons』
+
+詳述於上文件的說明與前文的結論，可以知道，Angular的Service全部是用於存取一個『具名』的『唯一化實體物件』。
+不同的Service，對於相同的產生函數，其回傳的結果不同，程式範例參考下文：
+http://jsbin.com/ohamub/1/edit?html,output
+
+設計上，物件建立可從下列觀點來看
+1. 預設行為
+
+預設行為是靜態建立，程式在完成時即設定好諸多行為於物件群內。
+例如：數學運算法則，訊息結構。
+
+這部分的物件不需要重複存在，也可視為唯一化的資源，適合利用Angular結構儲存與管理。
+
+2. 外部資訊
+
+外部資訊是經過格式化的文件，程式經過對文件的翻譯，建立出對應的物件群。
+例如：動態迷宮。
+
+物件因外部資訊動態產生，並交由一系統管理，其存取、刪除、重建、複製皆由系統處裡。
+
+管理系統可以運用Angular系統，但需額外建立一固定名稱的管理物件。
+這部分設計依據題目狀況不同，活用Angular的管理系統，但也需注意其系統本身並不適合動態產生。
+
+3. 演算產出
+
+演算產出與外部資訊相似，資訊源為數據，透過特殊演算法將數據分解並建立不定數量的物件。
+其設計、運用上問題與外部資訊相同，考量與解決方案亦相同。
+
+---------------------
+
 Dependency Injection 設計觀念解讀：
 http://huan-lin.blogspot.com/2011/10/dependency-injection-1.html
 
@@ -359,3 +424,10 @@ https://docs.angularjs.org/api/ng/directive/ngInclude
 
 Fetches, compiles and includes an external HTML fragment.
 獲取、編譯、導入外部HTML片段。
+
+---------------------
+
+Reference page :
+
+AngularJS Framework : Introduction
+http://www.bogotobogo.com/AngularJS/AngularJS_Introduction.php
