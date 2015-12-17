@@ -369,6 +369,14 @@ http://jsbin.com/ohamub/1/edit?html,output
 
 ---------------------
 
+AngularJS、jQuery Mobile混合使用：
+Demo：AngularMixJQuery
+
+兩個JSFramework同時會控制CSS與Event，依據其優先順序會導致某一方的系統被刪除，如ngRepear會蓋掉JQM checkbox event，導致CSS無法修改。
+對此，依據不同事件與情況，因視需求修改結構或觸發程序。
+
+---------------------
+
 Dependency Injection 設計觀念解讀：
 http://huan-lin.blogspot.com/2011/10/dependency-injection-1.html
 
@@ -431,3 +439,6 @@ Reference page :
 
 AngularJS Framework : Introduction
 http://www.bogotobogo.com/AngularJS/AngularJS_Introduction.php
+
+UI Bootstrap
+https://angular-ui.github.io/bootstrap/

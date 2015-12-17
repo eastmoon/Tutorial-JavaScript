@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Code</title>
+    <!-- load jQuery-->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- load jQuery Mobile -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <!-- load css style -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <!-- load angularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <!-- Main script -->
+    <script>
+        // Create module.
+        var app = angular.module("demoApp", []);
+
+        // Defined controller
+        app.controller("Ctr1", function($scope) {
+            $scope.selected = 0;
+            $scope.Set = function( a_id ) {
+                // Reference : http://stackoverflow.com/questions/21603985/angularjs-ng-repeat-and-jquery-mobile
+                // When use ngRepeat, jquery mobile setting event will remove. When this happen, use angular event to reset the label class.
+                $("label[for]").removeClass("ui-radio-on");
+                $("label[for]").addClass("ui-radio-off");
+                $("label[for='radio-" + a_id + "']").removeClass("ui-radio-off");
+                $("label[for='radio-" + a_id + "']").addClass("ui-radio-on");
+            };
+        });
+
+        // Initial Angular with current document and module is myApp.
+        $(document).ready(function() {
+            angular.bootstrap( document, ["demoApp"] );
+        });
+    </script>
+</head>
+<body ng-controller="Ctr1">
+    <div name="panel">
+        <div name="group-error-jqm">
+            <h1>Group 1 - JQM</h1>
+            <div>
+                <label for="radio-e-jqm-0">0</label>
+                <input type="radio" id="radio-e-jqm-0" name="radio-e--jqm-choose">
+                <label for="radio-e-jqm-1">1</label>
+                <input type="radio" id="radio-e-jqm-1" name="radio-e--jqm-choose">
+            </div>
+        </div>
+        <div name="group-error">
+            <h1>Group 1 - AngularJS</h1>
+            <div ng-repeat="n in [0,1]">
+                <label for="radio-e-{{$index}}">{{n}}</label>
+                <input type="radio" id="radio-e-{{$index}}" name="radio-e-choose" ng-model="$parent.selected" ng-value="$index">
+            </div>
+        </div>
+        <div name="group">
+            <h1>Group 2</h1>
+            <div ng-repeat="n in [0,1]">
+                <label for="radio-{{$index}}">{{n}}</label>
+                <input type="radio" id="radio-{{$index}}" name="radio-choose" ng-model="$parent.selected" ng-value="$index" ng-click="Set($index)">
+            </div>
+        </div>
+        <h1>Select :  {{selected}}</h1>
+    </div>
+</body>
+</html>

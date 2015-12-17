@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Code</title>
+    <!-- load jQuery-->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- load jQuery Mobile -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <!-- load css style -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <!-- load angularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <!-- Main script -->
+    <script>
+        // Create module.
+        var app = angular.module("demoApp", []);
+
+        // Defined controller
+        app.controller("Ctr1", function($scope) {
+            $scope.isCompile = false;
+            $scope.Set = function() {
+                if( !$scope.isCompile ) {
+                    $scope.isCompile = true;
+                    $(document).on("pagebeforeshow", ReCompile);
+                }
+            };
+            function ReCompile(e, data) {
+                // Reference : https://api.jquerymobile.com/category/events/
+                // Reference : http://stackoverflow.com/questions/20760643/jquery-mobile-get-the-loaded-page-id
+                // Reference : http://stackoverflow.com/questions/19424357/angular-bootstrapping-after-load-of-html
+                // Reference : http://stackoverflow.com/questions/15250644/loading-an-angularjs-controller-dynamically
+                // Get the $compile service from the app's injector
+                var injector = $(document).injector();
+                var $compile = injector.get('$compile');
+
+                // Compile the HTML into a linking function...
+                var linkFn = $compile($("#" + data.toPage[0].id));
+
+                // ...and link it to the scope we're interested in.
+                // Here we'll use the $rootScope.
+                var $rootScope = injector.get('$rootScope');
+                var elem = linkFn($rootScope);
+                $('.content').append(elem);
+
+                // Now that the content has been compiled, linked,
+                // and added to the DOM, we must trigger a digest cycle
+                // on the scope we used in order to update bindings.
+                $rootScope.$digest();
+            };
+        });
+        // Initial Angular with current document and module is myApp.
+        $(document).ready(function() {
+            angular.bootstrap( document, ["demoApp"] );
+        });
+    </script>
+</head>
+<body ng-controller="Ctr1">
+    <div data-role="page" id="main-page">
+        <!-- /content -->
+        <div role="main" data-theme="a" class="ui-content">
+            <a name="btn-1" href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-inline" ng-click="Set()">Dynamic Compile : {{isCompile}}</a>
+            <a name="btn-2" href="Dynamic-Compile_ext.html" class="ui-shadow ui-btn ui-corner-all ui-btn-inline">Open Ext-page</a>
+        </div>
+    </div>
+</body>
+</html>
+
