@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQM Basics demo with Multi-page</title>
+    <!-- load jQuery-->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- load jQuery Mobile custom defined -->
+    <script src="application/jqm.custom.defined.js"></script>
+    <!-- load jQuery Mobile -->
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <!-- load css style -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <!-- Viewport meta tag, http://view.jquerymobile.com/master/demos/pages/#Viewportmetatag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div data-role="page" id="main-page">
+        <div data-role="header">
+            <h2>Hello World！</h2>
+        </div>
+
+        <div role="main" class="ui-content">
+            <p>This is content in main page</p>
+            <a href="#sub-page">link to sub-page</a>
+        </div>
+
+        <div data-role="footer">
+            <h1>It is footer.</h1>
+        </div>
+    </div>
+
+    <div data-role="page" id="sub-page">
+        <div data-role="header">
+            <h2>Hello World!!!</h2>
+        </div>
+
+        <div role="main" class="ui-content">
+            <p>This is content in sub page</p>
+            <a href="#main-page">Home</a><br />
+            <a href="#content-page">Content Page</a>
+        </div>
+
+        <div data-role="footer">
+            <h1>It is footer.</h1>
+        </div>
+    </div>
+
+    <div data-role="page" id="content-page">
+        <div role="main" class="ui-content">
+            <p>This is content page.</p>
+            <a href="JQM-1_Basics_MultiPage_ext.html" data-prefetch="true">This link will prefetch the page</a><br />
+            <a href="#main-page">Home</a>
+        </div>
+    </div>
+</body>
+</html>
