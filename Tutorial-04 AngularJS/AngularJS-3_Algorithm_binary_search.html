@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AngularJS-3 Aglorithm model design 2</title>
+    <!-- load jQuery-->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- load angularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script>
+        // Reference : http://openhome.cc/Gossip/AlgorithmGossip/BinarySearch.htm
+        // Reference : https://zh.wikipedia.org/wiki/%E6%8A%98%E5%8D%8A%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95
+
+        // Create an application module.
+        var app = angular.module( "algorithm-model", []);
+
+        function BinarySearch( list, target ) {
+            var low = 0;
+            var upper = list.length - 1;
+            while( low <= upper )
+            {
+                var mid = Math.floor((low+upper)/2);
+                if(list[mid] < target)
+                    low = mid + 1;
+                else if(list[mid] > target)
+                    upper = mid - 1;
+                else
+                    return mid;
+            }
+            return -1;
+        };
+
+        function RandomList( a_size, a_max )
+        {
+            var result = [];
+            var d = Math.floor(a_max / a_size);
+            var t = 0;
+            for( var i = 0 ; i < a_size ; i++ )
+            {
+                t += Math.floor(Math.random() * d) + 1;
+                result.push(t);
+            }
+            return result;
+        };
+
+        function RandomSwap( a_list, a_time )
+        {
+            var temp = 0;
+            var a = 0;
+            var b = 0;
+            for( var i = 0 ; i < a_time ; i++ )
+            {
+                a = Math.floor(Math.random() * a_list.length);
+                b = Math.floor(Math.random() * a_list.length);
+
+                temp = a_list[a];
+                a_list[a] = a_list[b];
+                a_list[b] = temp;
+            }
+            return a_list;
+        }
+
+        app.controller("BinarySearchAlgorithm", function($scope) {
+            $scope.max = 100;
+            $scope.listsize = 40;
+            $scope.targetsize = 50;
+            $scope.list = [];
+            $scope.target = [];
+            $scope.Initial = function() {
+                console.log("Initial");
+                $scope.list = RandomList($scope.listsize, $scope.max);
+                $scope.target = RandomSwap(RandomList($scope.targetsize, $scope.max), $scope.targetsize);
+                console.log("Initial");
+            }
+            $scope.Search = function( a_target ) {
+                var result = BinarySearch($scope.list, a_target);
+                if( result < 0 )
+                    return "None";
+                return result;
+            };
+        });
+
+        $(document).ready(function() {
+            angular.bootstrap(document, ["algorithm-model"]);
+        });
+    </script>
+</head>
+<body ng-controller="BinarySearchAlgorithm">
+    <p>List : <input ng-model="listsize"> Target : <input ng-model="targetsize"> Max : <input ng-model="max"></p>
+    <input type="button" ng-click="Initial()" value="Test Binary Search">
+    <h3>List = {{listsize}}</h3>
+    [ <span ng-repeat="n in list">{{n}} </span>]
+    <h3>Target = {{targetsize}}</h3>
+    [ <span ng-repeat="n in target">{{n}} </span>]
+    <h3>Result : </h3>
+    <div ng-repeat="n in target">{{n}} is at [{{Search(n)}}]</div>
+</body>
+</html>
