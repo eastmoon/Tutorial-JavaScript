@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+<script>
+    // Reference : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
+    // Reference : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype
+    // Reference : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call
+
+    // Class defined.
+    var Person = function() {
+        // Private variable
+        var job = "developer.";
+        var fun = function() {
+            console.log("Private function");
+        }
+        // Public variable
+        this.canTalk = true;
+        this.name = "";
+        this.language = "C++";
+        // Public Method
+        this.Greet = function() {
+            console.log("I am " + this.name + ", and i am  " + job + ", language is " + this.language);
+        }
+    }
+
+    var PersonX = function() {
+        this.GreetX = function() {
+            console.log("I am special one.");
+        }
+    }
+
+    // Prototype 1
+    var PersonSkill = function() {}
+    PersonSkill.prototype.Learning = function( a_lang ) {
+        this.language = a_lang;
+    }
+
+    // Prototype 2
+    var PersonSkillX = function() {}
+    PersonSkillX.prototype.L1 = "Java";
+
+    // Employee class, inheritance from Person
+    var Employee = function(a_name, a_title) {
+        // Call parent class constructor.
+        Person.call(this);
+        // Call parent class constructor.
+        PersonX.call(this);
+        // Defined variable.
+        this.name = a_name;
+        this.title = a_title;
+    }
+    // Inheritance Person prototype.
+    Employee.prototype = Object.create(PersonSkill.prototype);
+    Employee.prototype = Object.create(PersonSkillX.prototype);
+    // Defined class constructor function.
+    Employee.prototype.constructor = Employee;
+
+    var bob = new Employee('Bob', 'Builder');
+    if( bob.Learning != null )
+        bob.Learning("JavaScript");
+
+    console.info("Result");
+    bob.Greet();
+    if( bob.GreetX != null )
+        bob.GreetX();
+</script>
+<body>
+
+</body>
+</html>

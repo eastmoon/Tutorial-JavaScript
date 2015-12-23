@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web GL Demo</title>
+    <!-- load jQuery-->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- Load WebGL Library ThreeJS, Reference : http://cdnjs.com/libraries/three.js/ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r72/three.min.js"></script>
+    <!-- Load JavaScript Performance Monitor, Reference : http://cdnjs.com/libraries/stats.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r14/Stats.min.js"></script>
+    <style>
+        body { margin: 0; }
+        canvas { width: 100%; height: 100% }
+    </style>
+    <script>
+        $(document).ready( function() {
+            Step1();
+        });
+        function Step1() {
+            //4. Light up the world
+            // Create Scene
+            var scene = new THREE.Scene();
+            // Create Camera
+            var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+            camera.position.z = 5;
+            // Create Render
+            var renderer = new THREE.WebGLRenderer();
+            renderer.setSize( window.innerWidth, window.innerHeight );
+            // Create Stats Monitor
+            var stats = new Stats();
+            stats.domElement.style.position = 'absolute';
+            stats.domElement.style.left = '0px';
+            stats.domElement.style.top = '0px';
+            stats.setMode( 0 ); // 0: fps, 1: ms, 2: mb
+            $("#stats-panel").html(stats.domElement);
+            // Create light.
+            var obj = Lights.PointLight1();
+            scene.add( obj );
+            // Create Model Shape
+            obj = Objects.Planet();
+            scene.add( obj );
+
+            for( var i = 0 ; i < scene.children.length ; i++ )
+            {
+                console.log(scene.children[i]["Execute"] != null);
+            }
+
+            // Add render in HTML DOM.
+            // jQuery statement.
+            $("#webgl-panel").html( renderer.domElement );
+
+            // Start rendering
+            // This will create a loop that causes the renderer to draw the scene 60 times per second.
+            function draw () {
+                // Render statement.
+                window.requestAnimationFrame( draw );
+                renderer.render( scene, camera );
+            }
+            draw();
+        };
+
+        var Lights = {
+            PointLight1: function() {
+                var obj = new THREE.PointLight( 0xffffff, 1 );
+                obj.position.set( 10, 10, 10 );
+                obj.Execute = function() {
+                    // Rotation cube.
+                    obj.transform.x += 0.001;
+                    obj.transform.y += 0.011;
+                }
+                return obj;
+            }
+        };
+
+        var Objects = {
+            Planet : function() {
+                // Create Model Shape
+                var geometry = new THREE.SphereGeometry( 1, 32, 32 );
+                // Create Model Skin,  material for non-shiny (Lambertian) surfaces.
+                var material = new THREE.MeshLambertMaterial({
+                    map: THREE.ImageUtils.loadTexture('img/mars_color.jpg')
+                });
+                // Create Model Object.
+                var obj = new THREE.Mesh( geometry, material );
+                return obj;
+            }
+        };
+
+    </script>
+</head>
+<body>
+    <div id="stats-panel"></div>
+    <div id="webgl-panel"></div>
+</body>
+</html>

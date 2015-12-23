@@ -35,6 +35,9 @@ Tutorial list
 05¡G
 	- JQuery Mobile
 
+06¡G
+	- WebGL
+
 X¡G
 	- One Page Scroll
 	- ref : http://www.smashingmagazine.com/2014/08/25/how-i-built-the-one-page-scroll-plugin/
@@ -97,6 +100,12 @@ http://jsfiddle.net/
 GoJS
 Interactive Diagrams for JavaScript and HTML
 http://gojs.net/latest/index.html?gclid=CLCzp_Wsv8kCFUYAvAod-U4LmA
+
+CDN JavaScript
+http://cdnjs.com/libraries/
+
+jQuery-noty
+https://cdnjs.com/libraries/jquery-noty
 
 =========================
 Reference doc

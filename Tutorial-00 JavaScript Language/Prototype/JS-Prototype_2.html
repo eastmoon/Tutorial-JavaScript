@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+<script>
+    // Reference : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
+    // Reference : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype
+    // Reference : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call
+
+    // Class defined.
+    var Person = function() {
+        // Private variable
+        var job = "developer.";
+        // Public variable
+        this.canTalk = true;
+        this.name = "";
+        this.language = "C++";
+        // Public Method
+        this.Greet = function() {
+            console.log("I am " + this.name + ", and i am  " + job + ", language is " + this.language);
+        }
+    }
+
+    // Protected Method
+    var PersonSkill = function() {}
+    PersonSkill.prototype.Learning = function( a_lang ) {
+        this.language = a_lang;
+    }
+    PersonSkill.prototype.L1 = "Java";
+    PersonSkill.prototype.L2 = "Python";
+
+    // Employee class, inheritance from Person
+    var Employee = function(a_name, a_title) {
+        // Call parent class constructor.
+        Person.call(this);
+        // Defined variable.
+        this.name = a_name;
+        this.title = a_title;
+    }
+    // Inheritance Person prototype.
+    Employee.prototype = Object.create(PersonSkill.prototype);
+    // Defined class constructor function.
+    Employee.prototype.constructor = Employee;
+
+    var bob = new Employee('Bob', 'Builder');
+    bob.Learning("JavaScript");
+    var rg = new Employee('Red Green', 'Handyman');
+    rg.Learning(rg.L1);
+
+    console.info("Result");
+    bob.Greet();
+    rg.Greet();
+</script>
+<body>
+
+</body>
+</html>

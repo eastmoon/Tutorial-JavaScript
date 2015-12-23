@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+<script>
+    // Reference : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
+    // Reference : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype
+    // Reference : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call
+
+    // Class defined.
+    var Person = function() {
+        // Private variable
+        var privateTalk = "program.";
+        // Public variable
+        this.canTalk = true;
+        this.name = "";
+        // Public Method
+        this.SayPrivateTalk = function() {
+            console.log("I am " + this.name + ", and i also " + privateTalk);
+        }
+    }
+
+    // Protected Method
+    Person.prototype.Greet = function() {
+        if (this.canTalk) {
+            console.log('Hi, I am ' + this.name);
+        }
+    }
+
+    // Create Object by Class
+    var obj = new Person();
+    // Output variable
+    console.info("Class Result")
+    console.log( obj.privateTalk );
+    console.log( obj.canTalk );
+    obj.SayPrivateTalk();
+    // Employee class, inheritance from Person
+    var Employee = function(a_name, a_title) {
+        // Call parent class constructor.
+        Person.call(this);
+        // Defined variable.
+        this.name = a_name;
+        this.title = a_title;
+    }
+    // Inheritance Person prototype.
+    Employee.prototype = Object.create(Person.prototype);
+    // Defined class constructor function.
+    Employee.prototype.constructor = Employee;
+    // Override prototype function.
+    Employee.prototype.Greet = function() {
+        if (this.canTalk) {
+            console.log('Hi, I am ' + this.name + ', the ' + this.title);
+        }
+    }
+
+    // Customer class, inheritance from Person
+    var Customer = function(a_name) {
+        Person.call(this);
+        this.name = a_name;
+    };
+    Customer.prototype = Object.create(Person.prototype);
+    Customer.prototype.constructor = Customer;
+
+    // Mime class, inheritance from Person
+    var Mime = function(a_name) {
+        Person.call(this);
+        this.name = a_name;
+        this.canTalk = false;
+    };
+    Mime.prototype = Object.create(Person.prototype);
+    Mime.prototype.constructor = Mime;
+
+    // Self
+    var CloneT = function(a_name) {
+        Person.call(this);
+        this.name = a_name;
+    }
+
+    // Generator Factory
+    var Factory = {
+        Person: function() {
+            return new Person();
+        },
+        Employee: function( a_name, a_title ) {
+            return new Employee(a_name, a_title);
+        },
+        Customer: function( a_name ) {
+            return new Customer(a_name);
+        },
+        Mime: function( a_name ) {
+            return new Mime(a_name);
+        }
+    }
+
+    var bob = new Employee('Bob', 'Builder');
+    var joe = new Customer('Joe');
+    var rg = new Employee('Red Green', 'Handyman');
+    var mike = new Customer('Mike');
+    var mime = new Mime('Mime');
+    var cloneT = new CloneT('CloneT');
+
+    console.info("Inheritance Result");
+    bob.Greet();
+    bob.SayPrivateTalk();
+    joe.Greet();
+    joe.SayPrivateTalk();
+    rg.Greet();
+    mike.Greet();
+    mime.Greet();
+    console.log("cloneT Can greet ?", cloneT["Greet"] != null );
+    console.log("cloneT Can say private ?", cloneT["SayPrivateTalk"] != null );
+    cloneT.SayPrivateTalk();
+</script>
+<body>
+
+</body>
+</html>
