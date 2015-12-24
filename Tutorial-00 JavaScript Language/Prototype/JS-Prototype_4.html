@@ -13,6 +13,9 @@
     var Person = function() {
         // Private variable
         var job = "developer.";
+        var fun = function() {
+            console.log("Private function");
+        }
         // Public variable
         this.canTalk = true;
         this.name = "";
@@ -23,13 +26,19 @@
         }
     }
 
-    // Prototype Method
-    var PersonSkill = function() {}
-    PersonSkill.prototype.Learning = function( a_lang ) {
-        this.language = a_lang;
+    // Prototype 1
+    var PersonSkill = function() {
+        console.log("RUN PROTOTYPE");
+        var a = "I AM SPECIAL ONE!!";
+        var f = function() {
+            console.log("RUN!!!!");
+        }
+        this.Learning = function(a_lang) {
+            this.language = a_lang;
+            console.log(a);
+            f();
+        }
     }
-    PersonSkill.prototype.L1 = "Java";
-    PersonSkill.prototype.L2 = "Python";
 
     // Employee class, inheritance from Person
     var Employee = function(a_name, a_title) {
@@ -39,19 +48,20 @@
         this.name = a_name;
         this.title = a_title;
     }
+
     // Inheritance Person prototype.
-    Employee.prototype = Object.create(PersonSkill.prototype);
+    Employee.prototype = Object.create(new PersonSkill());
     // Defined class constructor function.
     Employee.prototype.constructor = Employee;
 
     var bob = new Employee('Bob', 'Builder');
-    bob.Learning("JavaScript");
-    var rg = new Employee('Red Green', 'Handyman');
-    rg.Learning(rg.L1);
+    if( bob.Learning != null )
+        bob.Learning("JavaScript");
 
     console.info("Result");
     bob.Greet();
-    rg.Greet();
+    if( bob.GreetX != null )
+        bob.GreetX();
 </script>
 <body>
 

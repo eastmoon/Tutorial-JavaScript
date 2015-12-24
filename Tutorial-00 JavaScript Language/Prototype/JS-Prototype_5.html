@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+</head>
+<script>
+    // Class defined.
+    var Person = function() {
+        // Private variable
+        // Private Method
+        // Public variable
+        // Public Method
+    }
+
+    // Prototype Class
+    var PersonSkill = function() {}
+
+    // Employee class, inheritance from Person
+    var Employee = function(a_name, a_title) {
+        // Call parent class constructor.
+        Person.call(this);
+    }
+
+    // Inheritance Person prototype.
+    Employee.prototype = Object.create(new PersonSkill());
+    // Defined class constructor function.
+    Employee.prototype.constructor = Employee;
+
+    var bob = new Employee("bob", "Developer");
+    var gz = new Person();
+
+    console.log("Result");
+    console.log("bob Constructor is Employee :", bob.constructor == Employee);  // true
+    console.log("bob Constructor is Person :", bob.constructor == Person);  // true
+    console.log("gz Constructor is Person :", gz.constructor == Person);  // true
+    console.log("bob Prototype equal Employee.prototype :", Employee.prototype === Object.getPrototypeOf(bob));  // true
+    console.log("gz Prototype equal Person.prototype :", Person.prototype === Object.getPrototypeOf(gz));  // true
+</script>
+<body>
+
+</body>
+</html>
