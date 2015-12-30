@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web GL Demo</title>
+    <!-- load jQuery-->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- Load WebGL Library ThreeJS, Reference : http://cdnjs.com/libraries/three.js/ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r72/three.min.js"></script>
+    <!-- Load JavaScript Performance Monitor, Reference : http://cdnjs.com/libraries/stats.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r14/Stats.min.js"></script>
+    <style>
+        body { margin: 0; }
+        canvas { width: 100%; height: 100% }
+    </style>
+    <script>
+        $(document).ready( function() {
+            Initial();
+        });
+        function Initial() {
+            // Create Stats Monitor
+            var stats = new Stats();
+            stats.domElement.style.position = 'absolute';
+            stats.domElement.style.left = '0px';
+            stats.domElement.style.top = '0px';
+            stats.setMode( 0 ); // 0: fps, 1: ms, 2: mb
+            $("#stats-panel").html(stats.domElement);
+
+            // Create Render
+            var renderer = new THREE.WebGLRenderer();
+            renderer.setSize( window.innerWidth, window.innerHeight );
+            // Add render in HTML DOM.
+            $("#webgl-panel").html( renderer.domElement );
+
+            // Initial scene layout
+            LayoutQueue.Texture.AddScene("Earth", new Scene1(renderer) );
+            LayoutQueue.Stage.AddScene("Main", new Scene2(renderer) );
+
+            // Start rendering
+            // This will create a loop that causes the renderer to draw the scene 60 times per second.
+            function draw () {
+                // Render statement.
+                window.requestAnimationFrame( draw );
+                //
+                stats.begin();
+                // Update Surface layout
+                LayoutQueue.Texture.Update();
+                // Update stage  layout
+                LayoutQueue.Stage.Update();
+                //
+                stats.end();
+            }
+            draw();
+        };
+
+        var BehaviourObject = function() {
+            this.name = "BehaviourObject";
+            this.enableExecute = true;
+            this.Execute = function() {}
+        }
+
+        var ManagementBehaviourObject = function() {
+            // Implement behaviour object
+            BehaviourObject.call(this);
+            // Public variable
+            this.childrenList = new Array();
+            // Public method
+            this.Update = function() {
+                // First, execute chlidren function.
+                this.UpdateChildren();
+                // Second, execute self function.
+                this.Execute();
+            }
+            // Private method
+            this.UpdateChildren = function() {
+                // Make sure list is array.
+                if( Object.prototype.toString.call( this.childrenList ) === '[object Array]' )
+                {
+                    // If object in list have execute function, than run it.
+                    for( var i = 0, obj = null ; i < this.childrenList.length ; i++ )
+                    {
+                        obj = this.childrenList[i];
+                        // if exist enableExecute, and value is true, run update function.
+                        if(obj["enableExecute"] != null)
+                        {
+                            if(obj["enableExecute"])
+                            {
+                                // First, is exist update function, run it.
+                                if(obj["Update"] != null)
+                                    obj["Update"]();
+                                // Second, if don't have update, but exist execute function, run it.
+                                else if(obj["Execute"] != null)
+                                    obj["Execute"]();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        var SceneLayout = function() {
+            // Implement Management behaviour object.
+            ManagementBehaviourObject.call(this);
+            // Override execute function
+            this.Execute = function() {}
+            // Public list
+            this.childrenList = new Array();
+            // Public Method
+            this.AddScene = function( a_name, a_scene ) {
+                var index = this.RetrieveSceneIndex(a_name);
+                if(index < 0)
+                {
+                    a_scene["name"] = a_name;
+                    this.childrenList.push(a_scene);
+                }
+            }
+            this.RemoveScene = function( a_name ) {
+                var index = this.RetrieveSceneIndex(a_name);
+                if(index >= 0)
+                    this.childrenList.splice(index, 1);
+            }
+            this.RetrieveScene = function( a_name ) {
+                var index = this.RetrieveSceneIndex(a_name);
+                if(index >= 0)
+                    return this.childrenList[index];
+                return null;
+            }
+            // Private Method
+            this.RetrieveSceneIndex = function(a_name) {
+                for( var i = 0 ; i < this.childrenList.length ; i++ )
+                    if(a_name === this.childrenList[i]["name"])
+                        return i;
+                return -1;
+            }
+        }
+
+        var StageScene = function() {
+            // Implement Management behaviour object.
+            ManagementBehaviourObject.call(this);
+            // Constructor Scene
+            {
+                this.scene = new THREE.Scene();
+                this.camera = null;
+                this.renderer = null;
+                // Setting childrenList
+                this.childrenList = this.scene.children;
+            }
+            // Public method, override update function.
+            this.Update = function() {
+                // First, execute chlidren function.
+                this.UpdateChildren();
+                // Second, execute self function.
+                this.Execute();
+                // Render stage.
+                if( this.renderer != null && this.camera != null )
+                {
+                    this.renderer.setRenderTarget(null);
+                    this.renderer.clear();
+                    this.renderer.render( this.scene, this.camera );
+                }
+            }
+        }
+
+        var TextureScene = function() {
+            // Implement Management behaviour object.
+            ManagementBehaviourObject.call(this);
+            // Constructor Scene
+            {
+                this.scene = new THREE.Scene();
+                this.camera = null;
+                this.renderer = null;
+                this.texture = null;
+                // Setting childrenList
+                this.childrenList = this.scene.children;
+            }
+            // Public method, override update function.
+            this.Update = function() {
+                // First, execute chlidren function.
+                this.UpdateChildren();
+                // Second, execute self function.
+                this.Execute();
+                // Render stage.
+                if( this.renderer != null && this.camera != null && this.texture != null)
+                {
+                    this.renderer.setRenderTarget(this.texture);
+                    this.renderer.clear();
+                    this.renderer.render( this.scene, this.camera, this.texture );
+                }
+            }
+        }
+
+        var LayoutQueue = {
+            Texture: new SceneLayout(),
+            Stage: new SceneLayout()
+        }
+
+        var Scene1 = function( a_renderer ) {
+            // Implement TextureScene
+            TextureScene.call(this);
+
+            // Constructor Scene
+            {
+                // Create Camera
+                this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+                this.camera.position.z = 5;
+                // Setting Renderer
+                this.renderer = a_renderer;
+                // Create render target
+                this.texture = new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight);
+            }
+
+            // Constructor Object in Scene
+            {
+                // Create light.
+                this.scene.add( Lights.PointLight1() );
+                // Create Model Shape
+                this.scene.add( Objects.Planet() );
+            }
+
+            // Override execute function
+            this.Execute = function() {
+            }
+        }
+
+        var Scene2 = function( a_renderer ) {
+            // Implement StageScene
+            StageScene.call(this);
+
+            // Constructor Scene
+            {
+                // Create Camera
+                this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+                this.camera.position.z = 5;
+                // Setting Renderer
+                this.renderer = a_renderer;
+            }
+
+            // Constructor Object in Scene
+            {
+                // Create Model Shape
+                this.scene.add( Objects.Plane(2, 0.01) );
+                this.scene.add( Objects.Plane(-2, 0.050) );
+            }
+
+            // Override execute function
+            this.Execute = function() {
+            }
+        }
+
+        var Lights = {
+            PointLight1: function() {
+                var obj = new THREE.PointLight( 0xffffff, 1 );
+                // Implement behaviour object
+                BehaviourObject.call(obj);
+                // Override execute function
+                obj.Execute = function() {
+                }
+                obj.position.set( 10, 10, 10 );
+                return obj;
+            }
+        };
+
+        var Objects = {
+            Planet : function() {
+                // Create Model Shape
+                var geometry = new THREE.SphereGeometry( 1, 32, 32 );
+                // Create Model Skin,  material for non-shiny (Lambertian) surfaces.
+                var material = new THREE.MeshLambertMaterial({
+                    map: THREE.ImageUtils.loadTexture('img/mars_color.jpg')
+                });
+                // Create Model Object.
+                var obj = new THREE.Mesh( geometry, material );
+                // Implement behaviour object
+                BehaviourObject.call(obj);
+                // Override execute function
+                obj.Execute = function() {
+                    obj.rotation.y += 0.01;
+                }
+                return obj;
+            },
+            Plane: function( a_l, a_s ) {
+                var obj = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.MeshBasicMaterial());
+                // Implement behaviour object
+                BehaviourObject.call(obj);
+                // Setting object
+                obj.position.set(a_l,0,0);
+                var surface = LayoutQueue.Texture.RetrieveScene("Earth");
+                if( surface != null )
+                {
+                    obj.material.map = surface.texture;
+                    obj.material.map.needsUpdate = true;
+                }
+                obj.Execute = function() {
+                    obj.rotation.y += a_s;
+                }
+                return obj;
+            }
+        };
+
+    </script>
+</head>
+<body>
+    <div id="stats-panel"></div>
+    <div id="webgl-panel"></div>
+</body>
+</html>

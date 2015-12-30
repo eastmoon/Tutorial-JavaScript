@@ -15,18 +15,9 @@
     </style>
     <script>
         $(document).ready( function() {
-            Step1();
+            Initial();
         });
-        function Step1() {
-            //4. Light up the world
-            // Create Scene
-            var scene = new THREE.Scene();
-            // Create Camera
-            var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-            camera.position.z = 5;
-            // Create Render
-            var renderer = new THREE.WebGLRenderer();
-            renderer.setSize( window.innerWidth, window.innerHeight );
+        function Initial() {
             // Create Stats Monitor
             var stats = new Stats();
             stats.domElement.style.position = 'absolute';
@@ -34,41 +25,123 @@
             stats.domElement.style.top = '0px';
             stats.setMode( 0 ); // 0: fps, 1: ms, 2: mb
             $("#stats-panel").html(stats.domElement);
-            // Create light.
-            var obj = Lights.PointLight1();
-            scene.add( obj );
-            // Create Model Shape
-            obj = Objects.Planet();
-            scene.add( obj );
 
-            for( var i = 0 ; i < scene.children.length ; i++ )
-            {
-                console.log(scene.children[i]["Execute"] != null);
-            }
-
-            // Add render in HTML DOM.
-            // jQuery statement.
-            $("#webgl-panel").html( renderer.domElement );
+            // Initial scene layout
+            var layout = new SceneLayout();
+            layout.childrenList.push( new Scene() );
 
             // Start rendering
             // This will create a loop that causes the renderer to draw the scene 60 times per second.
             function draw () {
                 // Render statement.
                 window.requestAnimationFrame( draw );
-                renderer.render( scene, camera );
+                //
+                stats.begin();
+                // Update scene layout
+                layout.Update();
+                //
+                stats.end();
             }
             draw();
         };
 
+        var BehaviourObject = function() {
+            this.enableExecute = true;
+            this.Execute = function() {}
+        }
+
+        var ManagementBehaviourObject = function() {
+            // Implement behaviour object
+            BehaviourObject.call(this);
+            // Public variable
+            this.childrenList = new Array();
+            // Public method
+            this.Update = function() {
+                // First, execute chlidren function.
+                UpdateChildren(this.childrenList);
+                // Second, execute self function.
+                this.Execute();
+            }
+            // Private method
+            function UpdateChildren( list) {
+                // Make sure list is array.
+                if( Object.prototype.toString.call( list ) === '[object Array]' )
+                {
+                    // If object in list have execute function, than run it.
+                    for( var i = 0, obj = null ; i < list.length ; i++ )
+                    {
+                        obj = list[i];
+                        // if exist enableExecute, and value is true, run update function.
+                        if(obj["enableExecute"] != null)
+                        {
+                            if(obj["enableExecute"])
+                            {
+                                // First, is exist update function, run it.
+                                if(obj["Update"] != null)
+                                    obj["Update"]();
+                                // Second, if don't have update, but exist execute function, run it.
+                                else if(obj["Execute"] != null)
+                                    obj["Execute"]();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        var SceneLayout = function() {
+            // Implement Management behaviour object.
+            ManagementBehaviourObject.call(this);
+            // Override execute function
+            this.Execute = function() {}
+            // Public list
+            this.childrenList = new Array();
+        }
+
+        var Scene = function() {
+            // Implement Management behaviour object.
+            ManagementBehaviourObject.call(this);
+
+            // Constructor Scene
+            {
+                // Create Scene
+                var scene = new THREE.Scene();
+                // Create Camera
+                var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+                camera.position.z = 5;
+                // Create Render
+                var renderer = new THREE.WebGLRenderer();
+                renderer.setSize( window.innerWidth, window.innerHeight );
+                // Add render in HTML DOM.
+                $("#webgl-panel").html( renderer.domElement );
+            }
+
+            // Constructor Object in Scene
+            {
+                // Create light.
+                scene.add( Lights.PointLight1() );
+                // Create Model Shape
+                scene.add( Objects.Planet() );
+            }
+
+            // Setting childrenList
+            this.childrenList = scene.children;
+
+            // Override execute function
+            this.Execute = function() {
+                renderer.render( scene, camera );
+            }
+        }
+
         var Lights = {
             PointLight1: function() {
                 var obj = new THREE.PointLight( 0xffffff, 1 );
-                obj.position.set( 10, 10, 10 );
+                // Implement behaviour object
+                BehaviourObject.call(obj);
+                // Override execute function
                 obj.Execute = function() {
-                    // Rotation cube.
-                    obj.transform.x += 0.001;
-                    obj.transform.y += 0.011;
                 }
+                obj.position.set( 10, 10, 10 );
                 return obj;
             }
         };
@@ -83,6 +156,12 @@
                 });
                 // Create Model Object.
                 var obj = new THREE.Mesh( geometry, material );
+                // Implement behaviour object
+                BehaviourObject.call(obj);
+                // Override execute function
+                obj.Execute = function() {
+                    obj.rotation.y += 0.01;
+                }
                 return obj;
             }
         };

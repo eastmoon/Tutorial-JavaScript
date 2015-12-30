@@ -92,6 +92,26 @@ This will hold all your custom styles, tweaks to the default widgets and media q
 
 覆蓋框架樣式應為最小螢幕尺寸，以最大寬度斷點來替代；這設計將限制螢幕寬度於一定尺寸，若低限制使用覆蓋樣式；反之若高於限制，則使用一般樣式。
 
+RWD樣式設計相關討論：
+Web Style Sheets CSS tips & tricks, http://www.w3.org/Style/Examples/007/units.en.html
+-----
+CSS font size, https://css-tricks.com/css-font-size/
+-----
+彈性化的 Media Query, https://blog.hinablue.me/entry/css-media-query-use-pixel-or-not/
+-----
+Responsive Web Design - 概論整理重點, http://blog.friendo.com.tw/posts/238205-responsive-web-design
+-----
+CSS 使用 px 和 em 的差異, http://blog.longwin.com.tw/2007/12/css_px_em_difference_2007/
+-----
+RWD 字型設定策略, http://www.kangting.tw/2014/04/rwd.html
+
+字型大小的設定單位，有絕對單位的px，以及比例單位的em、rem與百世比。
+像素（px）是一種絕對單位，例如當你將字型設定為16px，則網頁將以 16px 呈現字型， 沒有任何妥協，使用絕對單位的好處在於可以完全掌控網頁內容，這在過去以固定寬度為主要設計方式的時代並沒有什麼問題，然而行動裝置的崛起，以像素為單位的設計方式面臨了不小的挑戰。
+
+精確的像素設定沒有辦法滿足多樣性的裝置呈現需求，例如根據個人電腦螢幕設計的的字型大小，在手機之類的小型螢幕上就會變得不容易檢視，反之亦然。除此之外，既使面對固定寬度的網頁設計，精確的像素設定亦不容易維護，一旦字型大小需要調整，逐一修改網頁中字型的設定值成了無可避免的問題。
+
+為了避免上述的問題，比較好的作法是透過em或是百分比為字型大小進行設定。
+-----
 jQuery Mobile 提供的RWD元件與屬性入下所列：
 
 ○ responsive grids

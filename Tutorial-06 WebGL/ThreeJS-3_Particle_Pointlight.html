@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web GL Demo</title>
+    <!-- load jQuery-->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- Load WebGL Library ThreeJS, Reference : http://cdnjs.com/libraries/three.js/ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r72/three.min.js"></script>
+    <!-- Load JavaScript Performance Monitor, Reference : http://cdnjs.com/libraries/stats.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r14/Stats.min.js"></script>
+    <!-- Load ThreeJS.Behaviour lib -->
+    <script src="js/lib/ThreeJS.Behaviour.js"></script>
+    <style>
+        body { margin: 0; }
+        canvas { width: 100%; height: 100% }
+    </style>
+    <script>
+        $(document).ready( function() {
+            Initial();
+        });
+        function Initial() {
+            // Create Stats Monitor
+            var stats = new Stats();
+            stats.domElement.style.position = 'absolute';
+            stats.domElement.style.left = '0px';
+            stats.domElement.style.top = '0px';
+            stats.setMode( 0 ); // 0: fps, 1: ms, 2: mb
+            $("#stats-panel").html(stats.domElement);
+
+            // Create Render
+            var renderer = new THREE.WebGLRenderer();
+            renderer.setSize( window.innerWidth, window.innerHeight );
+            // Add render in HTML DOM.
+            $("#webgl-panel").html( renderer.domElement );
+
+            // Initial scene layout
+            LayoutQueue.Stage.AddScene("Main", new Scene(renderer) );
+
+            // Start rendering
+            // This will create a loop that causes the renderer to draw the scene 60 times per second.
+            function draw () {
+                // Render statement.
+                window.requestAnimationFrame( draw );
+                //
+                stats.begin();
+                // Update Surface layout
+                LayoutQueue.Texture.Update();
+                // Update stage  layout
+                LayoutQueue.Stage.Update();
+                //
+                stats.end();
+            }
+            draw();
+        };
+
+        var Scene = function(a_renderer) {
+            // Implement Management behaviour object.
+            StageScene.call(this);
+
+            // Constructor Scene
+            {
+                // Create Camera
+                this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+                this.camera.position.z = 15;
+                // Setting Renderer
+                this.renderer = a_renderer;
+            }
+
+            // Constructor Object in Scene
+            {
+                // Create light.
+                this.scene.add( Lights.PointLight(0x00ffff, {x:0.7, y:0.5, z:0.3}, {x:3, y:5, z:3}) );
+                this.scene.add( Lights.PointLight(0xff00ff, {x:0.5, y:0.3, z:0.7}, {x:5, y:3, z:3}) );
+                this.scene.add( Lights.PointLight(0xffff00, {x:0.3, y:0.7, z:0.5}, {x:3, y:3, z:5}) );
+                this.scene.add( Lights.PointLight(0x888888, {x:0.7, y:1, z:0.5}, {x:5, y:5, z:5}) );
+                this.scene.add( Lights.PointLight(0xcccccc, {x:0.5, y:1, z:0.7}, {x:5, y:5, z:5}) );
+                // Create Model Shape
+                this.scene.add( Objects.Planet(0, 0, 0) );
+                this.scene.add( Objects.Planet(7, 0, 0) );
+                this.scene.add( Objects.Planet(-7, 0, 0) );
+            }
+
+            // Override execute function
+            this.Execute = function() {
+            }
+        }
+
+        var Lights = {
+            PointLight: function( a_color, a_speed, a_local) {
+                var obj = new THREE.PointLight( a_color, 1 );
+                // Add sprite in light
+                var material = new THREE.SpriteMaterial({color: a_color, fog: true});
+                var sprite = new THREE.Sprite( material );
+                sprite.scale.set(0.1, 0.1, 0.1);
+                obj.add( sprite );
+                // Implement behaviour object
+                BehaviourObject.call(obj);
+                // Override execute function
+                obj.Execute = function() {
+                    var time = Date.now() * 0.0005;
+                    obj.position.x = Math.sin( time * a_speed.x ) * a_local.x;
+                    obj.position.y = Math.cos( time * a_speed.y ) * a_local.y;
+                    obj.position.z = Math.cos( time * a_speed.z ) * a_local.z;
+                }
+                return obj;
+            }
+        };
+
+        var Objects = {
+            Planet : function(a_x, a_y, a_z) {
+                // Create Model Shape
+                var geometry = new THREE.SphereGeometry( 1, 32, 32 );
+                // Create Model Skin,  material for non-shiny (Lambertian) surfaces.
+                var material = new THREE.MeshLambertMaterial({
+                    map: THREE.ImageUtils.loadTexture('img/mars_color.jpg')
+                });
+                // Create Model Object.
+                var obj = new THREE.Mesh( geometry, material );
+                // Implement behaviour object
+                BehaviourObject.call(obj);
+                // Setting Position
+                obj.position.set(a_x, a_y, a_z);
+                // Override execute function
+                obj.Execute = function() {
+                    obj.rotation.y += 0.01;
+                }
+                return obj;
+            }
+        };
+
+    </script>
+</head>
+<body>
+    <div id="stats-panel"></div>
+    <div id="webgl-panel"></div>
+</body>
+</html>
