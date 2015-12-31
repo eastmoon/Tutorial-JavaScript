@@ -214,6 +214,11 @@ http://threejs.org/examples/#webgl_lensflares
 
 ---------------------
 
+Detect webgl support and fallback to regular canvas
+http://stackoverflow.com/questions/9899807/three-js-detect-webgl-support-and-fallback-to-regular-canvas
+
+---------------------
+
 Reference page :
 
 Graphics programming for the web
