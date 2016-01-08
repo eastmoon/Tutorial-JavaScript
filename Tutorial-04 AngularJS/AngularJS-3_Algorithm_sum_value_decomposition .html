@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AngularJS-3 Aglorithm model design 2</title>
+    <!-- load jQuery-->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- load angularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script>
+        // Reference : http://openhome.cc/Gossip/AlgorithmGossip/BinarySearch.htm
+        // Reference : https://zh.wikipedia.org/wiki/%E6%8A%98%E5%8D%8A%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95
+
+        // Create an application module.
+        var app = angular.module( "algorithm-model", []);
+
+        function SumValueDecomposition( value, size, max, filter ) {
+            var result = [];
+            if( filter < ValueFilter.length )
+                result = ValueFilter[filter](ValueDecomposition( value, size, max ));
+            return result;
+        };
+
+        ValueFilter = [
+                function( list ) {
+                    return list;
+                },
+                function( list ) {
+                    var result = [];
+                    var isDuplicate = false;
+                    for( var i = 0 ; i < list.length ; i++ )
+                    {
+                        var o = list[i];
+                        isDuplicate = false;
+                        for( var j = 0 ; j < o.length && !isDuplicate; j++ )
+                        {
+                            for( k = j + 1 ; k < o.length && !isDuplicate; k++ )
+                            {
+                                if( o[j] == o[k] )
+                                    isDuplicate = true;
+                            }
+                        }
+                        if(!isDuplicate)
+                            result.push(list[i]);
+                    }
+                    return result;
+                },
+                function( list ) {
+                    var result = [];
+                    var isDuplicate = false;
+                    for( var i = 0 ; i < list.length ; i++ )
+                    {
+                        var o = list[i];
+                        isDuplicate = false;
+                        for( var j = 0 ; j < o.length && !isDuplicate; j++ )
+                        {
+                            for( k = j + 1 ; k < o.length && !isDuplicate; k++ )
+                            {
+                                if( o[j] == o[k] )
+                                    isDuplicate = true;
+                            }
+                        }
+                        if(isDuplicate)
+                            result.push(list[i]);
+                    }
+                    return result;
+                },
+                function( list ) {
+                    var result = [];
+                    var target = [];
+                    var rule1 = false;
+                    for( var i = 0 ; i < list.length ; i++ )
+                    {
+                        var o = list[i];
+                        target = [];
+                        if(o.length == 3)
+                        {
+                            // 1. {x, y, z} => {A, B}
+                            for( var j = 0 ; j < o.length ; j++ )
+                            {
+                                rule1 = false;
+                                for( var k = 0 ; k < target.length; k++ )
+                                {
+                                    if( o[j] == target[k] )
+                                        rule1 = true;
+                                }
+                                if( !rule1 )
+                                    target.push(o[j]);
+                            }
+                        }
+
+                        //  2. {A, B} size is 2
+                        if( target.length == 2 )
+                            result.push(o);
+                    }
+                    return result;
+                },
+                function( list ) {
+                    return FilterDuplicateSet(ValueFilter[1](list));
+                },
+                function( list ) {
+                    return FilterDuplicateSet(ValueFilter[3](list));
+                }
+        ]
+
+        function ValueDecomposition( value, size, max )
+        {
+            var list = [];
+            var result = [];
+            var v = 0;
+            var d = 0;
+            var t = max;
+
+            if( size == 1 ) {
+                if( value > max)
+                    return null;
+                return [value];
+            }
+
+            if( value <= t )
+                t = value;
+
+            do{
+                v = value;
+                d = value - t;
+                var r = [];
+                if( d >= 0 )
+                    r = ValueDecomposition( d, size - 1, max );
+                else
+                    r = ValueDecomposition( 0, size - 1, max );
+
+                if( r != null ) {
+                    result = [t];
+                    for( var i = 0 ; i < r.length ; i++ )
+                        list.push(result.concat(r[i]));
+                }
+                else
+                    break;
+            }while( --t >= 0 )
+
+            return list;
+        }
+
+        function FilterDuplicateSet( sets ) {
+            var result = [];
+            var isDuplicate = false;
+            var setDuplicate = false;
+
+            for( var i = 0 ; i < sets.length ; i++ )
+            {
+                var o = sets[i];
+                o.sort();
+                setDuplicate = false;
+                for( var j = 0 ; j < result.length ; j++ )
+                {
+                    isDuplicate = true;
+                    for( k = 0 ; k < o.length ; k++ )
+                    {
+                        if( o[k] != result[j][k] )
+                            isDuplicate = false;
+                    }
+                    if( isDuplicate )
+                        setDuplicate = true;
+                }
+
+                if( !setDuplicate )
+                    result.push(o);
+            }
+            return result;
+        }
+
+        app.controller("BinarySearchAlgorithm", function($scope) {
+            $scope.value = 5;
+            $scope.size = 3;
+            $scope.max = 9;
+            $scope.filter = 0;
+            $scope.permutation = [];
+            $scope.Initial = function() {
+                console.log("Initial");
+                $scope.permutation = SumValueDecomposition(Number($scope.value), Number($scope.size), Number($scope.max), Number($scope.filter));
+                console.log("Initial");
+            }
+        });
+
+        $(document).ready(function() {
+            angular.bootstrap(document, ["algorithm-model"]);
+        });
+    </script>
+</head>
+<body ng-controller="BinarySearchAlgorithm">
+    <p>Sum value : <input ng-model="value"> Size : <input ng-model="size"> Max : <input ng-model="max"></p>
+    <p>Filter : <input ng-model="filter"></p>
+    <p>0 : non-filter</p>
+    <p>1 : non-duplicate</p>
+    <p>2 : duplicate</p>
+    <p>3 : {x , y , z} = [{A, A, B} , {A, B, A}, {B, A, A}], A != B</p>
+    <p>4 : Filter (1), clear the same number set. </p>
+    <p>5 : Filter (3), clear the same number set. </p>
+    <input type="button" ng-click="Initial()" value="Test Permutation">
+    <h3>Result : {{permutation.length}}</h3>
+    <div ng-repeat="r in permutation track by $index">
+        [ <span ng-repeat="n in r track by $index">{{n}} </span>]
+    </div>
+</body>
+</html>
