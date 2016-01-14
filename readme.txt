@@ -115,6 +115,11 @@ http://cdnjs.com/libraries/
 jQuery-noty
 https://cdnjs.com/libraries/jquery-noty
 
+Video player
+http://jplayer.org/latest/developer-guide/
+
+
+
 =========================
 Reference doc
 

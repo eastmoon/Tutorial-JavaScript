@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Class tag</title>
+    <!-- Babel Learn ES2015, https://babeljs.io/docs/learn-es2015/ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script type="text/babel">
+        class TestClass {
+            constructor() {
+                console.log("Class Constructor");
+                this.m_var = "Test class.";
+            }
+
+            get var() {
+                return this.m_var;
+            }
+
+            set var(value) {
+                this.m_var = value;
+            }
+
+            toString() {
+                console.log("ToString : ", this.m_var);
+            }
+        }
+        var test = new TestClass();
+        test.toString();
+        test.var = "Change Class";
+        test.toString();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

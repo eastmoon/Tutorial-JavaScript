@@ -4,6 +4,7 @@ other reference :
 Function.prototype : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/prototype
 JavaScript 語言核心, 隱藏諸多細節的建構式：http://www.codedata.com.tw/javascript/essential-javascript-14-constructor/
 JavaScript 語言核心, prototype 特性：http://www.codedata.com.tw/javascript/essential-javascript-15-prototype/
+JavaScript 物件導向介紹, https://developer.mozilla.org/zh-TW/docs/JavaScript_%E7%89%A9%E4%BB%B6%E5%B0%8E%E5%90%91%E4%BB%8B%E7%B4%B9
 
 Demo：JS-Prototype_1，基礎Class與Prototype操作
 Demo：JS-Prototype_2，Class與Prototype建立可為分開之物件
