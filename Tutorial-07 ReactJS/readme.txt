@@ -58,6 +58,12 @@ https://facebook.github.io/react/blog/2015/10/01/react-render-and-top-level-api.
 
 React library, Top-Level API
 https://facebook.github.io/react/docs/top-level-api.html
+
+Interactivity and Dynamic UIs
+https://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html
+
+Component Specs and Lifecycle
+https://facebook.github.io/react/docs/component-specs.html
 ---------------------
 
 Reference page :
