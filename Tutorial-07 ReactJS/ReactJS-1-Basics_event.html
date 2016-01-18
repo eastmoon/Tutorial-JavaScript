@@ -20,10 +20,12 @@
         var ClickCount = React.createClass({
             // Initial state object
             getInitialState: function() {
+                console.log("Initial states");
                 return {count: 0};
             },
             // Initial props object, it will be overridden when input the same props.
             getDefaultProps: function() {
+                console.log("Initial properties");
               return {title: "Hi", word:"No thing"};
             },
             // Setting click event
