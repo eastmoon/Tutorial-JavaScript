@@ -119,6 +119,9 @@ https://facebook.github.io/react/blog/2015/10/01/react-render-and-top-level-api.
 ReactDOM.render and the Top Level React API
 ReactDOM繪製行為與React API關係性與物件導向運行影響。
 https://facebook.github.io/react/blog/2015/10/01/react-render-and-top-level-api.html
+
+React (Virtual) DOM Terminology
+https://facebook.github.io/react/docs/glossary.html
 ---------------------------
 
 ◎ 元件事件
@@ -165,8 +168,11 @@ Component Specs and Lifecycle
 https://facebook.github.io/react/docs/component-specs.html
 ---------------------------
 
-React (Virtual) DOM Terminology
-https://facebook.github.io/react/docs/glossary.html
+
 ---------------------
 
 Reference page :
+
+React on ES6+
+http://babeljs.io/blog/2015/06/07/react-on-es6-plus/
+http://www.tamas.io/react-with-es6/
