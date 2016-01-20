@@ -173,6 +173,3 @@ https://facebook.github.io/react/docs/component-specs.html
 
 Reference page :
 
-React on ES6+
-http://babeljs.io/blog/2015/06/07/react-on-es6-plus/
-http://www.tamas.io/react-with-es6/
