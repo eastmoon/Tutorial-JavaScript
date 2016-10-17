@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Module demo</title>
+</head>
+<body>
+    <div id="container">
+        It is demo.
+    </div>
+</body>
+<script>
+    // Pure Javascript module.
+    var module = ( function() {
+        var mSeparate = "_";
+        function m1() { return "Hello" + mSeparate; };
+        function m2() { return "World"; };
+        return {
+          m1:m1,
+          m2:m2}
+    })();
+
+    var subModule = (function(mod) {
+      mod.m3 = function() {return "Augmentation : " + mod.m1() + mod.m2()};
+      return mod;
+    })(module);
+
+    // Insert html into element.
+    document.getElementById("container").innerHTML = subModule.m3();
+</script>
+</html>

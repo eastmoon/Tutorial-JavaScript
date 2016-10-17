@@ -15,30 +15,14 @@
     <!-- load main script, If ReactJS use JSX format, script type need "text/babel" to compole script. -->
     <!-- language = "JavaScript1.7", https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/New_in_JavaScript/1.7 -->
     <!-- babel, https://babeljs.io/ -->
-    <script type="text/babel">
-        $(document).ready(function(){
-            var Hello = React.createClass({
-                render: function() {
-                    return <div>Hello {this.props.name}</div>;
-                }
-            });
-
-            ReactDOM.render(
-                    <Hello name="World, first one." />,
-                    document.getElementById('container1')
-            );
-
-            ReactDOM.render(
-                    <Hello name="World, second one." />,
-                    document.getElementById('container2')
-            );
-        })
-    </script>
+    <script type="text/babel" src="js/helloworld_JSX.js"></script>
+    <!-- load main script, without JSX, it use ReactDOM to controller -->
+    <script src="js/helloworld.js"></script>
 </head>
 <body>
-    <div id="container1">
+    <div id="container_JSX">
     </div>
-    <div id="container2">
+    <div id="container_without_JSX">
     </div>
 </body>
 </html>

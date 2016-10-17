@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Module demo</title>
+</head>
+<body>
+    <div id="container">
+        It is demo.
+    </div>
+</body>
+<script>
+    // Pure Javascript module.
+    var module = new Object({
+        mSeparate : "_",
+        m1 : function() { return "Hello" + this.mSeparate; },
+        m2 : function() { return "World"; }
+    });
+
+    // Insert html into element.
+    document.getElementById("container").innerHTML = module.m1() + module.m2() + module.mSeparate;
+</script>
+</html>

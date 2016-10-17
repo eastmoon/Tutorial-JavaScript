@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Module demo</title>
+</head>
+<body>
+    <div id="container">
+        It is demo.
+    </div>
+</body>
+<script>
+    // Pure Javascript module.
+    function m1() { return "Hello"; }
+    function m2() { return "World"; }
+
+    // Retrieve element and innert value and html.
+    console.log(document.getElementById("container"));
+    console.log(document.getElementById("container").value);
+    console.log(document.getElementById("container").innerHTML);
+
+    // Insert html into element.
+    document.getElementById("container").innerHTML = m1() + "_" + m2();
+</script>
+</html>

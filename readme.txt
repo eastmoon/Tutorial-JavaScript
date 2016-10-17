@@ -1,4 +1,4 @@
-Training scheme
+ï»¿Training scheme
 1. variable
 2. statement 
 	- http://en.wikipedia.org/wiki/Statement_%28computer_science%29
@@ -12,33 +12,39 @@ Training scheme
 
 Tutorial list
 
-01¡G
+01ï¼š
 	- Basic program architecture.
 	- Single application entry
 		- include extend JavaScript file.
 		- start the main JavaScript file, when include finish.
 
-02¡G
+02ï¼š
 	- Variable structure.
 	- Statement structure.
 	- Function structure.
 
-03¡G
+03ï¼š
 	- JQuery use to update HTML, insert HTML, change attribute.
 	- JQuery selectors to choose class or id.
 	- JQuery event handler.
 	- RWD ( Responsive Web Design ).
 
-04¡G
+04ï¼š
 	- AngularJS
 
-05¡G
+05ï¼š
 	- JQuery Mobile
 
-06¡G
+06ï¼š
 	- WebGL
 
-X¡G
+07ï¼š
+	- ReactJS
+
+08ï¼š
+	- Modular
+
+Xï¼š
 	- One Page Scroll
 	- ref : http://www.smashingmagazine.com/2014/08/25/how-i-built-the-one-page-scroll-plugin/
 
@@ -55,12 +61,12 @@ https://jquery.com/
 1-1. JQuery Mobile
 http://view.jquerymobile.com/master/demos/
 
-JQuery Mobile¬O¨Ï¥ÎªÌ¤¶­±®Ø¬[¡A®Ö¤ß°ò©³¬°JQuery¡A¨ÃÀ³¥Î©ó¤â¾÷¡B¥­ªO¡B¾\Åª¾¹¡Bµ§¹qµ¥¥­¥x¡C
-¦Ò¶q»İ¨£¦Ü©ó¤£¦P¥­¥x¡A¦¹®Ø¬[³]­p¿í´`º¥¶i¼W±j(RE¡Bprogressive enhancement)»PÅTÀ³¦¡³]­p(RWD¡BResponsive Web Design)­ì«h¡C
+JQuery Mobileæ˜¯ä½¿ç”¨è€…ä»‹é¢æ¡†æ¶ï¼Œæ ¸å¿ƒåŸºåº•ç‚ºJQueryï¼Œä¸¦æ‡‰ç”¨æ–¼æ‰‹æ©Ÿã€å¹³æ¿ã€é–±è®€å™¨ã€ç­†é›»ç­‰å¹³å°ã€‚
+è€ƒé‡éœ€è¦‹è‡³æ–¼ä¸åŒå¹³å°ï¼Œæ­¤æ¡†æ¶è¨­è¨ˆéµå¾ªæ¼¸é€²å¢å¼·(REã€progressive enhancement)èˆ‡éŸ¿æ‡‰å¼è¨­è¨ˆ(RWDã€Responsive Web Design)åŸå‰‡ã€‚
 
-¾ãÅé¦Ó½×¡AJQuery³]­pµÛ­«¼Ë¦¡±±¨î¡A¨ä¤¤ªºHTML Tag¡BTheme style¡BTransitions¡BRWD Componentµ¥¡A¨ä¤¤Áö¤£¥F¦³JS±±¨î¡A¦ı¹B¥Î­«ÂI¤´¦b©óCSS±±¨î»Pª©­±¹ï­¶­±ÅÜ°Ê®Éªº¤ÏÀ³¡C
+æ•´é«”è€Œè«–ï¼ŒJQueryè¨­è¨ˆè‘—é‡æ¨£å¼æ§åˆ¶ï¼Œå…¶ä¸­çš„HTML Tagã€Theme styleã€Transitionsã€RWD Componentç­‰ï¼Œå…¶ä¸­é›–ä¸ä¹æœ‰JSæ§åˆ¶ï¼Œä½†é‹ç”¨é‡é»ä»åœ¨æ–¼CSSæ§åˆ¶èˆ‡ç‰ˆé¢å°é é¢è®Šå‹•æ™‚çš„åæ‡‰ã€‚
 
-¸Ô²Ó»¡©ú°Ñ¦ÒTutorial-05/readme.txt
+è©³ç´°èªªæ˜åƒè€ƒTutorial-05/readme.txt
 
 2. ExtJS
 https://www.sencha.com/products/extjs/#overview
@@ -68,18 +74,18 @@ https://www.sencha.com/products/extjs/#overview
 3. AngularJS
 https://angularjs.org/
 
-AngularJS¨Ï¥ÎMVC¬[ºc¡A¨ä¤¤®Ö¤ß¤T¤j¤¸¥ó¬°
+AngularJSä½¿ç”¨MVCæ¶æ§‹ï¼Œå…¶ä¸­æ ¸å¿ƒä¸‰å¤§å…ƒä»¶ç‚º
 (1. Template ( View )
-¼ËªO¨t²Î¡A§Q¥Î¦¹¨t²Î¡A±NÀRºA¤åÀÉ(Static DOM)ªºHTML»P°ÊºA¤åÀÉ(Dynamic DOM)ªºTemplate¾ã¦X¬°¥i¨ü¬[ºc±±¨îªº­¶­±¡C
+æ¨£æ¿ç³»çµ±ï¼Œåˆ©ç”¨æ­¤ç³»çµ±ï¼Œå°‡éœæ…‹æ–‡æª”(Static DOM)çš„HTMLèˆ‡å‹•æ…‹æ–‡æª”(Dynamic DOM)çš„Templateæ•´åˆç‚ºå¯å—æ¶æ§‹æ§åˆ¶çš„é é¢ã€‚
 (2. Scope ( Model )
-Angular®Ö¤ß¡A¥Î©óºŞ²z¡B§e²{¸ê®Æ¡B¤ÏÀ³¤¶­±¨Æ¥ó¡A³z¹LScope¾ã¦XTemplate»PControllerªº·¾³q¡C
+Angularæ ¸å¿ƒï¼Œç”¨æ–¼ç®¡ç†ã€å‘ˆç¾è³‡æ–™ã€åæ‡‰ä»‹é¢äº‹ä»¶ï¼Œé€éScopeæ•´åˆTemplateèˆ‡Controllerçš„æºé€šã€‚
 (3. Controller
-¨Æ¥ó¨t²Î¡A¸g¹LScopeµn°OController¡A¨Ã«Øºc¾ã­ÓÀ³¥Îµ{¦¡ ( Application¡A³æ¤@<HTML></HTML>§¨¦íªº­¶­± )ªº¹B§@ÅŞ¿è¡C
+äº‹ä»¶ç³»çµ±ï¼Œç¶“éScopeç™»è¨˜Controllerï¼Œä¸¦å»ºæ§‹æ•´å€‹æ‡‰ç”¨ç¨‹å¼ ( Applicationï¼Œå–®ä¸€<HTML></HTML>å¤¾ä½çš„é é¢ )çš„é‹ä½œé‚è¼¯ã€‚
 
-¾ãÅé¦Ó½×¡AAngularJS³]­pµÛ­«¸ê®Æ»PÅã¥Ü¤¸¥óªº°ÊºA²£¥Í¡B°T®§·¾³q¡B¨Æ¥ó³B¸Ìµ¥¡A¨ä¤¤Áö´£¨ÑCSS¼Ë¦¡¡B°Êµe¡A¦ı¹B¥Î­«ÂI¤´·|¥HDIºc¦¨ªº°ß¤@¤Æ(Singleton)¼Æ¾Úµ²ºc¡A«Ø¥ß­¶¶¡·¾³q»P°ÊºA¤¸¥óºŞ²z¡C
-¨ä¦¸¡AÁöµMAngularJS¾Ö¦³Àu¨}ªº°T®§¬[ºc¡A¦ı¨äµ²ºcªº¥Í²£©MºŞ²z¨Ã¤£¾A¦X¥Î¨Ó³B²z¸ê®Æ¼Ò«¬¡A¦]¸ê®Æ¼Ò«¬¿é¥X»İ­n°ß¤@¤Æªº±µ¤f(Singleton Facade)Áö¥i¥ÑAngular¥N²z¡A¦ı¨ä¸ê®Æ¥»Åé¤´»İ½s¼g¦Û­qªº°ÊºA¬[ºc¡AÀ³¨Ï¥ÎJavaScript°ò¥»µ²ºc§¹¦¨¡C
+æ•´é«”è€Œè«–ï¼ŒAngularJSè¨­è¨ˆè‘—é‡è³‡æ–™èˆ‡é¡¯ç¤ºå…ƒä»¶çš„å‹•æ…‹ç”¢ç”Ÿã€è¨Šæ¯æºé€šã€äº‹ä»¶è™•è£¡ç­‰ï¼Œå…¶ä¸­é›–æä¾›CSSæ¨£å¼ã€å‹•ç•«ï¼Œä½†é‹ç”¨é‡é»ä»æœƒä»¥DIæ§‹æˆçš„å”¯ä¸€åŒ–(Singleton)æ•¸æ“šçµæ§‹ï¼Œå»ºç«‹é é–“æºé€šèˆ‡å‹•æ…‹å…ƒä»¶ç®¡ç†ã€‚
+å…¶æ¬¡ï¼Œé›–ç„¶AngularJSæ“æœ‰å„ªè‰¯çš„è¨Šæ¯æ¶æ§‹ï¼Œä½†å…¶çµæ§‹çš„ç”Ÿç”¢å’Œç®¡ç†ä¸¦ä¸é©åˆç”¨ä¾†è™•ç†è³‡æ–™æ¨¡å‹ï¼Œå› è³‡æ–™æ¨¡å‹è¼¸å‡ºéœ€è¦å”¯ä¸€åŒ–çš„æ¥å£(Singleton Facade)é›–å¯ç”±Angularä»£ç†ï¼Œä½†å…¶è³‡æ–™æœ¬é«”ä»éœ€ç·¨å¯«è‡ªè¨‚çš„å‹•æ…‹æ¶æ§‹ï¼Œæ‡‰ä½¿ç”¨JavaScriptåŸºæœ¬çµæ§‹å®Œæˆã€‚
 
-¸Ô²Ó»¡©ú°Ñ¦ÒTutorial-04/readme.txt
+è©³ç´°èªªæ˜åƒè€ƒTutorial-04/readme.txt
 
 4. BackboneJS
 http://backbonejs.org/
@@ -92,12 +98,15 @@ Graphics programming for the web
 @Xavier_Ho
 http://filonik.github.io/bdva2015/slides/webgl/
 
-¸Ô²Ó»¡©ú°Ñ¦ÒTutorial-06/readme.txt
+è©³ç´°èªªæ˜åƒè€ƒTutorial-06/readme.txt
 
 7. ReactJS
 http://facebook.github.io/react/
 
-¸Ô²Ó»¡©ú°Ñ¦ÒTutorial-067/readme.txt
+8. Modular
+http://www.ruanyifeng.com/blog/2012/10/javascript_module.html
+
+è©³ç´°èªªæ˜åƒè€ƒTutorial-067/readme.txt
 
 =========================
 Web tools
@@ -118,13 +127,14 @@ https://cdnjs.com/libraries/jquery-noty
 Video player
 http://jplayer.org/latest/developer-guide/
 
-
+Atom ä½¿ç”¨å¿ƒå¾—èˆ‡ Package æ¨è–¦ ( 2016/07/26 æ›´æ–°)
+http://negaihoshi.logdown.com/posts/220517-atom-use-ideas-and-recommendations
 
 =========================
 Reference doc
 
-«eºİ¤uµ{®v­±¸Õ°İÃD¶°
+å‰ç«¯å·¥ç¨‹å¸«é¢è©¦å•é¡Œé›†
 https://gist.github.com/hanksudo/5873678
 
-³¯Áé¸Û / ½Òµ{ / JavaScript ²Ä¤@ªù½Ò
+é™³é¾èª  / èª²ç¨‹ / JavaScript ç¬¬ä¸€é–€èª²
 http://ccc.nqu.edu.tw/wd.html#js1:home

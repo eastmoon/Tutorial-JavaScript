@@ -71,6 +71,7 @@ http://www.tamas.io/react-with-es6/
 ---------------------------
 
 ◎ Event system
+※ Demo : 20.Demo_application_search_data
 
 ReactJS的事件管理變數、傳遞由上層管理單元分配，各元件應對變數的存取與反應處理。
 
@@ -94,6 +95,9 @@ SearchBar ─〉 FilterableBox ─〉 ProductTable
 ---------------------------
 Refs to Components
 https://facebook.github.io/react/docs/more-about-refs.html
+
+Props、State、Refs 與表單處理
+https://github.com/kdchang/reactjs101/blob/master/Ch04/props-state-introduction.md
 ---------------------------
 
 ◎ JavaScript language, forEach
