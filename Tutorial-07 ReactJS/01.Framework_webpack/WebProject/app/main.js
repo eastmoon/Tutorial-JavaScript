@@ -1,4 +1,7 @@
 'use strict';
-var component = require('./component.js');
 
-document.body.appendChild(component());
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/app';
+
+ReactDOM.render(<App />, document.getElementById('app'));

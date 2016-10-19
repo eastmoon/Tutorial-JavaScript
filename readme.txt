@@ -103,10 +103,27 @@ http://filonik.github.io/bdva2015/slides/webgl/
 7. ReactJS
 http://facebook.github.io/react/
 
+詳細說明參考Tutorial-07/readme.txt
+
 8. Modular
 http://www.ruanyifeng.com/blog/2012/10/javascript_module.html
 
-詳細說明參考Tutorial-067/readme.txt
+詳細說明參考Tutorial-08/readme.txt
+
+X. Lodash
+https://lodash.com/
+
+矩陣管理、使用、創建工具。
+
+X. Underscore
+http://underscorejs.org/
+
+物件行為管理、運用工具。
+
+※ Differences between lodash and underscore
+http://stackoverflow.com/questions/13789618/differences-between-lodash-and-underscore
+基於改版程度、使用範圍、維護團隊考量，建議使用Lodash。
+
 
 =========================
 Web tools
@@ -138,3 +155,6 @@ https://gist.github.com/hanksudo/5873678
 
 陳鍾誠 / 課程 / JavaScript 第一門課
 http://ccc.nqu.edu.tw/wd.html#js1:home
+
+React vs Angular 2: 战争继续
+http://jixianqianduan.com/article-translation/2016/04/07/react-vs-angular2-fight-rages-on.html
