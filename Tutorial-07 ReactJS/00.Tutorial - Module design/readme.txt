@@ -68,6 +68,18 @@ class Hello extends React.Component { ... }
 React on ES6+
 http://babeljs.io/blog/2015/06/07/react-on-es6-plus/
 http://www.tamas.io/react-with-es6/
+
+MDN Classes
+https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Classes
+
+Managing the private data of ES6 classes
+http://www.2ality.com/2016/01/private-data-classes.html
+
+學習 ECMAScript 6 - var, let 和 const
+http://rocksaying.tw/archives/2015/ES6_var,let,const.html
+
+React.createClass versus extends React.Component
+https://toddmotto.com/react-create-class-versus-component/
 ---------------------------
 
 ◎ Event system
@@ -98,6 +110,9 @@ https://facebook.github.io/react/docs/more-about-refs.html
 
 Props、State、Refs 與表單處理
 https://github.com/kdchang/reactjs101/blob/master/Ch04/props-state-introduction.md
+
+React and ES6 - Part 3, Binding to methods of React class (ES7 included)
+http://egorsmirnov.me/2015/08/16/react-and-es6-part3.html
 ---------------------------
 
 ◎ JavaScript language, forEach

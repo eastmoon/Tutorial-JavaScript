@@ -1,17 +1,10 @@
 ﻿◎ ReactJS
 http://facebook.github.io/react/
 
-◎ Webpack
-
-React install :
-npm install webpack webpack-dev-server babel-loader babel-preset-es2015 babel-preset-react react react-dom react-hot-loader --save-dev
-
-Redux install :
-npm install redux react-redux redux-devtools --save-dev
-
 ◎ Flux
 https://www.npmjs.com/package/flux
 
+---------------------
 fluxchat by Bill Fisher
 https://speakerdeck.com/fisherwebdev/fluxchat
 
@@ -20,11 +13,30 @@ https://hulufei.gitbooks.io/react-tutorial/content/flux.html
 
 Flux 筆記
 http://andyyou.logdown.com/posts/241839-flux-notes
+---------------------
 
 ◎ Redux
 http://redux.js.org/docs/api/
 https://www.npmjs.com/package/redux
 
+Redux 是依據 Flux 的單向資料流，並簡化設計的資料流動管理事件廣播器。
+Redux 共有三個主要物件Store、Reducer、Action。
+	- Store，事件廣播管理器，透過subscribe增加事件監聽函數、透過dispatch發佈事件。
+	- Reducer，事件變數處理函數，依據傳遞物件調整Store內的狀態參數。
+	- Action，事件傳遞物件。
+
+基本操作：
+	1. 建立Reducer。
+	2. 建立Store，並設定對應的Reducer，以及初始狀態參數。 
+	3. 設定偵聽函數，Store.subscribe。
+	4. 發佈事件，Store.dispatch(Action)
+	5. Reducer接收狀態變數(State)、傳遞物件(Action)，並依據接收內容修改狀態變數
+	6. Store呼叫所有subscribe的監聽函數。
+	
+※ Redux設計有說明，偵聽Store的函數，需透過Store.getState來取得當前狀態；不過，Store並不會當成物件傳遞給偵聽函數，在React範例中可以見到component.setStore等函數，以此儲存跨元件的事件處理。
+- 將Redux設計過程封裝為Subject，並且定義一個靜態變數已取回Subject。
+
+---------------------
 Redux 的基础概念
 https://hulufei.gitbooks.io/react-tutorial/content/redux-basic.html
 
@@ -37,6 +49,8 @@ https://medium.com/google-developer-experts/angular-2-introduction-to-redux-1cf1
 Usage with React
 http://redux.js.org/docs/basics/UsageWithReact.html
 ※ <Provider> to magically make the store available to all container components in the application without passing it explicitly. You only need to use it once when you render the root component.
+---------------------
+
 
 ---------------------
 
@@ -74,5 +88,12 @@ https://fakefish.github.io/react-webpack-cookbook/index.html
 React入门教程
 https://www.gitbook.com/book/hulufei/react-tutorial/details
 
+React 碎碎念: 我只是想寫個 CSS
+http://pymaster.logdown.com/post/694666
 
+Singleton Classes In Es6
+http://amanvirk.me/singleton-classes-in-es6/
+
+CSS Tutorial
+http://www.w3schools.com/css/default.asp
 
