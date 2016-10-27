@@ -119,6 +119,12 @@ https://facebook.github.io/react/blog/2015/10/01/react-render-and-top-level-api.
 
 React (Virtual) DOM Terminology
 https://facebook.github.io/react/docs/glossary.html
+
+Declaring Prop Types and Default Props
+https://facebook.github.io/react/docs/react-without-es6.html#declaring-prop-types-and-default-props
+
+Setting the Initial State
+https://facebook.github.io/react/docs/react-without-es6.html#setting-the-initial-state
 ---------------------------
 
 ◎ 元件事件

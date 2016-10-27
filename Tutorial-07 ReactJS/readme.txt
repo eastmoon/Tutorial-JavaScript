@@ -35,6 +35,7 @@ Redux 共有三個主要物件Store、Reducer、Action。
 	
 ※ Redux設計有說明，偵聽Store的函數，需透過Store.getState來取得當前狀態；不過，Store並不會當成物件傳遞給偵聽函數，在React範例中可以見到component.setStore等函數，以此儲存跨元件的事件處理。
 - 將Redux設計過程封裝為Subject，並且定義一個靜態變數已取回Subject。
+- 考量ReactJS的Component設計，擁有props和states兩個參數物件，因此Redux設計是用於直接用Store.state與Component.State對接，或是說Redux.State等於Component.State。
 
 ---------------------
 Redux 的基础概念
@@ -50,6 +51,24 @@ Usage with React
 http://redux.js.org/docs/basics/UsageWithReact.html
 ※ <Provider> to magically make the store available to all container components in the application without passing it explicitly. You only need to use it once when you render the root component.
 ---------------------
+
+◎ Problem
+
+===========
+§ Each child in an array should have a unique "key" prop.
+http://stackoverflow.com/questions/28329382/
+
+使用矩陣產出的子元件，應設置key屬性；若單純矩陣，可以index來設置。
+若設置相同的key，在產生元件時，React會發出錯誤訊息並不產生元件。
+
+Lists and Keys
+https://facebook.github.io/react/docs/lists-and-keys.html
+===========
+§ Adjacent JSX elements must be wrapped in an enclosing tag
+http://stackoverflow.com/questions/31284169/
+
+在JSX中，若回傳時不可有兩個連續的Tag並列同層，此時應以外層Tag包覆此兩個Tag。
+===========
 
 
 ---------------------
@@ -88,12 +107,10 @@ https://fakefish.github.io/react-webpack-cookbook/index.html
 React入门教程
 https://www.gitbook.com/book/hulufei/react-tutorial/details
 
-React 碎碎念: 我只是想寫個 CSS
-http://pymaster.logdown.com/post/694666
-
 Singleton Classes In Es6
 http://amanvirk.me/singleton-classes-in-es6/
 
-CSS Tutorial
-http://www.w3schools.com/css/default.asp
+Destructuring and parameter handling in ECMAScript 6
+http://www.2ality.com/2015/01/es6-destructuring.html
+
 
