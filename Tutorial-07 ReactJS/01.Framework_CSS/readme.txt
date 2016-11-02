@@ -40,7 +40,7 @@ https://facebook.github.io/react/docs/dom-elements.html
 npm install style-loader css-loader react-css-modules --save-dev
 
 style-loader and css-loader process your CSS files. css-loader is the loader that actual makes CSS modules work。
-style-loader與css-loader用於處理CSS檔案。
+style-loader與css-loader用於處理CSS檔案；其中css-loaderu解析句型，而style-loader將解析結果放入js檔。
 css-loader亦包含Webpack loader運作程序，讓CSS Module可以確實運作。
 react-css-modules實做CSS Module對應程序，讓React的JSX可以正常運作CSS Module。
 

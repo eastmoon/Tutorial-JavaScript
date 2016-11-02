@@ -1,5 +1,21 @@
 ﻿◎ Webpack
 
+Webpack是一套基於NodeJS為底的開發模組整合工具。
+運用此工具，開發者可以使用NodeJS下的套件模組，並以此加速開發與自動化流程。
+
+◎ 模組安裝
+
+● npm (node package manager)
+
+NodeJS為執行JavaScript的環境操作軟體，若於伺服器安裝則可用JavaScript開發後端軟體。
+npm則是NodeJS用於安裝node packages的命令列工具，並可用其解決package相依性問題。
+
+○ Package Dependencies
+
+在安裝套件需注意，每個套件都有其相依其他第三方工具。
+因此安裝時，系統會檢查於本次安裝是否存有依賴相同的套件，或安裝被依賴的套件；若存在，npm對此會自動保留其一，但若分次安裝，舊有下載將不會移除。
+※ 由於套件安裝後會以階層方式存於檔案夾內，這也造成檔案夾過長而無法正常刪除問題，解決方式參考後文。
+
 ◎ Entry
 Demo : 20.Demo_01_entry_and_output
 Demo : 20.Demo_03_multi_entry
