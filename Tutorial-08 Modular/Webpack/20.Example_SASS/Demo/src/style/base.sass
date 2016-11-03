@@ -1,0 +1,26 @@
+// Import variable and function
+@import common/var
+
+// CSS Defined : Element
+body
+  background-color: blue
+  font-size: $text
+
+// CSS Defined : Class
+.box
+  border: black
+  border-style: solid
+
+// CSS Defined : ID
+#content
+  // Inherent
+  @extend .box
+  // Variable operator
+  width: $size * 2
+  height: $size
+  font-size: $size / 10
+
+// Using function
+#info
+  @extend .box
+  +border-radius(10px)

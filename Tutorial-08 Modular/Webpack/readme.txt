@@ -101,3 +101,9 @@ https://kknews.cc/zh-tw/other/26xkoe.html
 React 和 Webpack 小书 - 一本介绍在 React JS 中使用 Webpack 的小书。
 https://hainuo.gitbooks.io/react-webpack-cookbook/content/index.html
 
+建立react webpack 工具包
+http://www.checkme.tw/wordpress/react-webpack-generator/
+
+Introduction to Webpack with practical examples
+https://julienrenaux.fr/2015/03/30/introduction-to-webpack-with-practical-examples/
+

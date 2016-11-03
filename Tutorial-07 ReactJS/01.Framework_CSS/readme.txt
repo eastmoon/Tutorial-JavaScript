@@ -44,9 +44,28 @@ style-loader與css-loader用於處理CSS檔案；其中css-loaderu解析句型�
 css-loader亦包含Webpack loader運作程序，讓CSS Module可以確實運作。
 react-css-modules實做CSS Module對應程序，讓React的JSX可以正常運作CSS Module。
 
-§ 
+§ 簡介
 
+CSS Modules並非CSS，而是ICSS或稱Interoperable CSS。
+在執行上，其運作是將CSS內容寫入外部CSS檔案，在透過CSS Module在編譯其載入並轉譯為CSS in JS，在由React結構對應。
 
+因此，其特性是有一個js檔，就必存在一個css檔。
+{
+	TextField.js
+	TextField.css
+}
+
+而在js則是透過import將其設定使用
+{
+	import styles from './textField.css';
+}
+
+最後在JSX中設定其使用
+{
+	<div styleName='text1'> ... </div>
+	<div className={styles.text1}> ... </div>
+	<div styleName='text2'> ... </div>
+}
 ---------------------
 
 Reference page :

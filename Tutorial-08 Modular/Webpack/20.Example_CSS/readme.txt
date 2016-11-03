@@ -1,11 +1,17 @@
 ﻿◎ CSS webpack
 
-Webpack是一套基於NodeJS為底的開發模組整合工具。
-運用此工具，開發者可以使用NodeJS下的套件模組，並以此加速開發與自動化流程。
+Webpack封裝CSS文檔。
+在此記錄做法與相關問題。
 
 ◎ 模組安裝
 
 npm install webpack extract-text-webpack-plugin css-loader style-loader --save-dev
+
+◎ 小結
+
+在目前測試上，編寫期與執行期是有所區分。
+編寫期中引用到的CSS檔案，在最後編譯時才會使得Webpack進行檔案處理。
+但引用的命令所取回的物件並沒法值皆使用，而是需要外部轉譯物件協助才可運行，如CSS Module；但這樣的方式會依據對方的編寫格式而改動檔案編寫法則。
 
 ◎ Problem
 
