@@ -87,6 +87,8 @@ Demo : Tutorial-07 ReactJS\01.Framework_webpack\WebProject
 ※ 若沒有修改package.json，將無法正確執行編譯動作。
 ※ 如同多數專案檔案夾相似，Webpack以檔案夾為根目錄結構，亦即單一專案夾建立完成即可複製給相似專案運用；但需注意npm下載的內容會因為檔案夾名稱長度過常導致無法正常刪除、複製。
 	- 刪除檔案名稱過長方式：http://demo.tc/post/811
+※ 使用系統命令改名並刪除所有檔案夾。
+	- Demo : remove_node_modules.bat
  
 ○ 建立React webpack
 Demo : Tutorial-07 ReactJS\01.Framework_webpack\ReactProject

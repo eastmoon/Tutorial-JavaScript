@@ -1,0 +1,17 @@
+{
+  "name": "example.library.html",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "clean-webpack-plugin": "^0.1.14",
+    "copy-webpack-plugin": "^4.0.0",
+    "webpack": "^1.13.3"
+  }
+}
