@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <script src="ejs.min.js"></script>
+    <script>
+      window.onload = function() {
+        var people = ['geddy', 'neil', 'alex'],
+            html = ejs.render('<li><ul><%= people.join(", "); %></ul></li>', {people: people});
+
+        console.log(ejs.render);
+        console.log(html);
+        document.getElementById("app").innerHTML = html;
+      }
+    </script>
+  </head>
+  <body>
+    <div id="app">
+      <p>It is app.</p>
+    </div>
+  </body>
+</html>
